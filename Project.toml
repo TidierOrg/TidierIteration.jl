@@ -1,10 +1,10 @@
 name = "TidierMap"
 uuid = "70156b56-3382-4488-8713-2ebd91348263"
 authors = ["G. Vituri <56522687+vituri@users.noreply.github.com> and contributors"]
-version = "0.1"
+version = "0.1-DEV"
 
 [compat]
-julia = "1"
+julia = "1.9"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
