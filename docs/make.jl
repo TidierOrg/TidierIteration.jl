@@ -8,6 +8,7 @@ makedocs(
         ,"Mapping" => "maps.md"
         ,"Modifying" => "modify.md"
         ,"Predicates" => "predicates.md"
+        ,"Adverbs" => "adverbs.md"
     ]
     ,warnonly = true
     )
