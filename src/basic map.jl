@@ -45,7 +45,7 @@ Apply function `f` to the list `x` and convert the result to string (character).
 map_string(x, f) = map_type(x, f, string)
 
 """
-walk(x, f)
+    walk(x, f)
 
 Apply function `f` to the list `x` and return nothing.
 """

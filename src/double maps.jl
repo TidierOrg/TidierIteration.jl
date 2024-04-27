@@ -18,7 +18,7 @@ function map2_type(x, y, f, T)
 end
 
 """
-map2_dbl(x, y, f)
+    map2_float(x, y, f)
 
 Apply the two-variable function `f` to the objects `x` and `y`
 and convert it to float.
@@ -34,7 +34,7 @@ and convert it to integer.
 map2_int(x, y, f) = map2_type(x, y, f, Int)
 
 """
-map2_chr(x, y, f)
+    map2_string(x, y, f)
 
 Apply the two-variable function `f` to the objects `x` and `y`
 and convert it to string.
@@ -42,7 +42,7 @@ and convert it to string.
 map2_string(x, y, f) = map2_type(x, y, f, string)
 
 """
-map2_lgl(x, y, f)
+    map2_bool(x, y, f)
 
 Apply the two-variable function `f` to the objects `x` and `y`
 and convert it to boolean.
