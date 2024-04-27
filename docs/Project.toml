@@ -1,3 +1,3 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-TidierMap = "70156b56-3382-4488-8713-2ebd91348263"
+TidierIteration = "70156b56-3382-4488-8713-2ebd91348263"

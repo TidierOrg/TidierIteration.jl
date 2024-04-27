@@ -3,22 +3,33 @@
 
 Apply `f` to each pair `(i, x_i)` where `x[i] = x_i`.
 """
-function imap_arr(x, f)
+function imap_asis(x, f)
     items = collect(enumerate(x))
     x = items .|> first
     y = items .|> last
-    map2_arr(x, y, f)
+    map2_asis(x, y, f)
 end
 
 """
-    imap_dbl(x, f)
+    imap_type(x, f, T)
+
+Apply `f` to each pair `(i, x_i)` where `x[i] = x_i` and convert 
+it using function `T`.
+"""
+function imap_type(x, f, T)
+    items = collect(enumerate(x))
+    x = items .|> first
+    y = items .|> last
+    map2_type(x, y, f, T)
+end
+
+"""
+    imap_float(x, f)
 
 Apply `f` to each pair `(i, x_i)` where `x[i] = x_i` 
-and convert it to float (double).
+and convert it to float.
 """
-function imap_dbl(x, f)
-    imap_arr .|> float
-end
+imap_float(x, f) = imap_type(x, f, float)
 
 """
     imap_int(x, f)
@@ -26,32 +37,26 @@ end
 Apply `f` to each pair `(i, x_i)` where `x[i] = x_i` 
 and convert it to integer.
 """
-function imap_int(x, f)
-    imap_arr .|> Int
-end
+imap_int(x, f) = imap_type(x, f, Int)
 
 """
-    imap_lgl(x, f)
+    imap_bool(x, f)
 
 Apply `f` to each pair `(i, x_i)` where `x[i] = x_i` 
-and convert it to boolean (logical).
+and convert it to boolean.
 """
-function imap_lgl(x, f)
-    imap_arr .|> Bool
-end
+imap_bool(x, f) = imap_type(x, f, Bool)
 
 """
-    imap_chr(x, f)
+    imap_string(x, f)
 
 Apply `f` to each pair `(i, x_i)` where `x[i] = x_i` 
-and convert it to string (character).
+and convert it to string.
 """
-function imap_chr(x, f)
-    imap_arr .|> string
-end
+imap_string(x, f) = imap_type(x, f, string)
 
 """
-    imap_chr(x, f)
+    iwalk(x, f)
 
 Apply `f` to each pair `(i, x_i)` where `x[i] = x_i` 
 and return nothing.

@@ -1,47 +1,48 @@
 """
+    map_type(x, f, T)
+
+Apply function `f` to the list `x` and convert each element with function `T`.
+"""
+function map_type(x, f, T)
+    map(f, x) .|> T
+end
+
+"""
     map_arr(x, f)
 
-Apply function `f` to the list `x`.
+Apply function `f` to the list `x` and do no conversion.
 """
-function map_arr(x, f)
+function map_asis(x, f)
     map(f, x)
 end
 
 """
-    map_dbl(x, f)
+    map_float(x, f)(x, f)
 
 Apply function `f` to the list `x` and convert the result to float.
 """
-function map_dbl(x, f)
-    map(f, x) .|> float
-end
+map_float(x, f) = map_type(x, f, float)
 
 """
     map_int(x, f)
 
 Apply function `f` to the list `x` and convert the result to integer.
 """
-function map_int(x, f)
-    map(f, x) .|> Int
-end
+map_int(x, f) = map_type(x, f, Int)
 
 """
-    map_lgl(x, f)
+    map_bool(x, f)
 
 Apply function `f` to the list `x` and convert the result to logical (boolean).
 """
-function map_lgl(x, f)
-    map(f, x) .|> Bool
-end
+map_bool(x, f) = map_type(x, f, Bool)
 
 """
-    map_chr(x, f)
+    map_string(x, f)
 
 Apply function `f` to the list `x` and convert the result to string (character).
 """
-function map_chr(x, f)
-    map(f, x) .|> string
-end
+map_string(x, f) = map_type(x, f, string)
 
 """
 walk(x, f)
@@ -49,6 +50,6 @@ walk(x, f)
 Apply function `f` to the list `x` and return nothing.
 """
 function walk(x, f)
-    map_arr(x, f)
+    f.(x)
     nothing
 end

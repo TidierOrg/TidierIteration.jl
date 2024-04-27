@@ -34,6 +34,20 @@ function keep!(x, p)
 end
 
 """
+    discard(x, p)
+
+Discard the elements `x_i` of collection `x` such that `p(x_i)` is true.
+"""
+discard(x, p) = keep(x, !p)
+
+"""
+    discard!(x, p)
+
+Discard the elements `x_i` of collection `x` such that `p(x_i)` is true.
+"""
+discard!(x, p) = keep!(x, !p)
+
+"""
     compact(x)
 
 Keep the elements `x_i` of collection `x` such that `is_non_empty(x_i)` is `true`.

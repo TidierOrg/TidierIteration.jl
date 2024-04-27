@@ -2,7 +2,7 @@
 
 julia_version = "1.10.2"
 manifest_format = "2.0"
-project_hash = "06368eb95df2a26a2898c5deed4a257c948d9c0e"
+project_hash = "96b8cfed381bfbc2f02635dd6802e7a3fdcde718"
 
 [[deps.ANSIColoredPrinters]]
 git-tree-sha1 = "574baf8110975760d391c710b6341da1afa48d8c"
@@ -237,8 +237,8 @@ version = "1.10.0"
 deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
-[[deps.TidierMap]]
-path = "/home/vituri/Documentos/GitHub/TidierMap.jl"
+[[deps.TidierIteration]]
+path = "/home/vituri/Documentos/GitHub/TidierIteration.jl"
 uuid = "70156b56-3382-4488-8713-2ebd91348263"
 version = "0.1.0-DEV"
 

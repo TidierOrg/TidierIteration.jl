@@ -1,6 +1,6 @@
-using TidierMap
+using TidierIteration
 using Test
 
-@testset "TidierMap.jl" begin
+@testset "TidierIteration.jl" begin
     # Write your tests here.
 end
