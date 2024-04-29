@@ -10,6 +10,20 @@ function compose(args...)
 end
 
 """
+    compose_n(f, n = 2)
+
+Compose the function `f` with itself `n` times.
+"""
+function compose_n(f, n = 2)
+    n < 0 && throw("n must non-negative!")
+    n == 0 && return identity
+    n == 1 && return f
+
+    reduce(∘, repeat([f], n))
+end
+
+
+"""
     negate(f)
 
 Create the negation of `f`.

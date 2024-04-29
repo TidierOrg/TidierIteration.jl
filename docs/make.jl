@@ -9,6 +9,7 @@ makedocs(
         ,"Modifying" => "modify.md"
         ,"Predicates" => "predicates.md"
         ,"Adverbs" => "adverbs.md"
+        ,"Flatten" => "flatten.md"
     ]
     ,warnonly = true
     )

@@ -65,3 +65,36 @@ y
 
 every([1:5;], isodd)
 every([1:2:5;], isodd)
+
+# flatten.jl
+d1 = Dict(
+    "id" => 1
+    ,"events" => Dict(
+        1 => Dict(
+            "vehicle" => 1
+            ,"latitude" => 1
+            ,"longitude" => 1
+            ,"alarm_ids" => Dict(
+                1 => 0
+                ,2 => 0
+            )
+        )        
+    )
+)
+
+d2 = Dict(
+        "id" => 2
+        ,"sensor_data" => Dict(1 => 1, 2 => 0, 5 => 0)
+        ,"time" => "yesterday"
+    )
+
+d = [d1, d2]
+
+d1
+flatten_dict(d1)
+flatten_dict(d1, 2)
+flatten_dict(d1, 3)
+
+flatten_dicts_to_df(d)
+flatten_dicts_to_df(d, 2)
+flatten_dicts_to_df(d, 3)

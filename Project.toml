@@ -3,6 +3,10 @@ uuid = "88ce3ed7-42dc-47a9-ab9f-164be2e94407"
 authors = ["G. Vituri <56522687+vituri@users.noreply.github.com> and contributors"]
 version = "1.0.0-DEV"
 
+[deps]
+Chain = "8be319e6-bccf-4806-a6f7-6fae938471bc"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+
 [compat]
 julia = "1.9"
 

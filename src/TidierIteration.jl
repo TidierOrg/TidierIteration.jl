@@ -1,5 +1,11 @@
 module TidierIteration
 
+using DataFrames;
+export DataFrame;
+
+using Chain;
+export @chain;
+
 include("basic map.jl");
 export 
     map_type,
@@ -35,18 +41,18 @@ export
     modify,
     modify!,
     modify_if,
-    modify_if!;
-
-include("predicates.jl");
-export 
-    is_empty,
-    is_non_empty,
+    modify_if!,
     keep,
     keep!,
     discard,
     discard!,
     compact,
-    compact!,
+    compact!;
+
+include("predicates.jl");
+export 
+    is_empty,
+    is_non_empty,
     every, 
     some, 
     none;
@@ -56,5 +62,10 @@ export
     compose,
     negate,
     possibly;
+
+include("flatten.jl");
+export 
+    flatten_dict,
+    flatten_dicts_to_df
     
 end #module
