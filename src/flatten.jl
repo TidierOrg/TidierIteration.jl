@@ -50,7 +50,7 @@ end
 Given a vector of dictionaries, flatten each of them
 and concatenate on a dataframe.
 """
-function flatten_dicts_to_df(dicts:: Vector{<:Dict{<:Any, <:Any}}, n::Int = 1)
+function flatten_dicts_to_df(dicts, n::Int = 1)
     @chain dicts begin
         @. flatten_dict(_, n)
         @. to_json
