@@ -34,12 +34,14 @@ end
 
 Remove one layer of dictionaries of a dictionary.
 """
-function flatten_dict(dict::Dict{<:Any, <:Any}, n = 1)
+function flatten_dict(dict::Dict{<:Any, <:Any}, n = 1; lists_to_json = true)   
     v = [
         compose_n(flatten_dict, n)(x.first, x.second) for x ∈ dict
     ]
 
-    merge(v...)    
+    d = merge(v...)
+    
+    return d
 end
 
 """
@@ -48,10 +50,27 @@ end
 Given a vector of dictionaries, flatten each of them
 and concatenate on a dataframe.
 """
-function flatten_dicts_to_df(dicts::Vector{<:Dict}, n::Int = 1)
+function flatten_dicts_to_df(dicts:: Vector{<:Dict{<:Any, <:Any}}, n::Int = 1)
     @chain dicts begin
         @. flatten_dict(_, n)
+        @. to_json
         @. DataFrame
         vcat(_..., cols=:union)
     end
+end
+
+function collapse_json(x)
+    x
+end
+
+function collapse_json(x::Dict{<:Any, <:Any})
+    x |> JSON3.write |> string
+end
+
+function to_json(d::Dict{<:Any, <:Any})
+    for k ∈ keys(d)
+        d[k] = collapse_json(d[k])
+    end
+
+    d
 end

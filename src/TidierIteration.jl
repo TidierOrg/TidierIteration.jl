@@ -6,6 +6,8 @@ export DataFrame;
 using Chain;
 export @chain;
 
+using JSON3;
+
 include("basic map.jl");
 export 
     map_type,

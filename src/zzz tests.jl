@@ -95,6 +95,28 @@ flatten_dict(d1)
 flatten_dict(d1, 2)
 flatten_dict(d1, 3)
 
+flatten_dict(d1, 3)
+
 flatten_dicts_to_df(d)
 flatten_dicts_to_df(d, 2)
 flatten_dicts_to_df(d, 3)
+
+df = DataFrame(a = 1, b = "avbdas", c = Dict(1 => 2))
+using JSON3
+
+c = names(df)[1]
+
+for c ∈ names(df)
+    @show df[1, c] = df[1, c] |> JSON3.write #|> string
+end
+
+d2["sensor_data"] = "aaaaaaaaaaaa"
+
+for x ∈ eachcol(df)
+    x = x |> JSON3.write
+
+    @show x
+end
+
+df
+
