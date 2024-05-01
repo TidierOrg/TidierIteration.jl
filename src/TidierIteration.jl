@@ -62,12 +62,20 @@ export
 include("adverbs.jl");
 export 
     compose,
+    compose_n,
     negate,
     possibly;
 
 include("flatten.jl");
 export 
-    flatten_dict,
-    flatten_dicts_to_df
-    
+    flatten,
+    flatten_n,
+    flatten_dfr,
+    flatten_json;
+
+include("map dicts.jl");
+export 
+    map_asis,
+    imap_asis;
+
 end #module

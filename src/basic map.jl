@@ -4,7 +4,7 @@
 Apply function `f` to the list `x` and convert each element with function `T`.
 """
 function map_type(x, f, T)
-    map(f, x) .|> T
+    map_asis(f, x) .|> T
 end
 
 """
