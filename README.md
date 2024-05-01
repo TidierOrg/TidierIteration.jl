@@ -2,6 +2,8 @@
 
 [![Build Status](https://github.com/vituri/TidierIteration.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/vituri/TidierIteration.jl/actions/workflows/CI.yml?query=branch%3Amain)
 
+<img src="/assets/logo.png" align="right" style="padding-left:10px;" width="150"/>
+
 ## What is TidierIteration.jl?
 
 TidierIteration.jl is a 100% Julia implementation of the `purrr` R package. It aims to ease
