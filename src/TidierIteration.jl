@@ -71,7 +71,8 @@ export
     flatten,
     flatten_n,
     flatten_dfr,
-    flatten_json;
+    flatten_json,
+    flatten_dfr_json;
 
 include("map dicts.jl");
 export 

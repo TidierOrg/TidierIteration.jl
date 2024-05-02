@@ -53,6 +53,22 @@ and concatenate on a dataframe.
 function flatten_dfr(dicts; n::Int = 1)
     @chain dicts begin
         @. flatten_n(n)(_)
+        @. DataFrame
+        vcat(_..., cols=:union)
+    end
+end
+
+"""
+    flatten_dfr_json(dicts::Vector{<:Dict}, n::Int = 1)
+
+Given a vector of dictionaries, flatten each of them
+and concatenate on a dataframe; remaining
+vectors and dictionaries are converted to a
+json string.
+"""
+function flatten_dfr_json(dicts; n::Int = 1)
+    @chain dicts begin
+        @. flatten_n(n)(_)
         @. flatten_json
         @. DataFrame
         vcat(_..., cols=:union)

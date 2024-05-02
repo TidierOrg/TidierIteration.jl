@@ -19,14 +19,14 @@ function compose_n(f, n = 2)
     n == 0 && return identity
     n == 1 && return f
 
-    reduce(∘, repeat([f], n))
+    compose(repeat([f], n)...)
 end
 
 
 """
     negate(f)
 
-Create the negation of `f`.
+Return a function which is the negation of `f`.
 """
 function negate(f)
     !f
@@ -36,14 +36,16 @@ end
     possibly(f, otherwise = nothing)
 
 Create a modified version of the function `f` such that
-it returns `otherwise` when `f(x)` is an error.
+it returns `otherwise` when `f(x)` throws an error.
 """
 function possibly(f, otherwise = nothing)
-    x -> begin
+
+    function f2(args...; kwargs...)
         try
-            f(x)
+            f(args...; kwargs...)
         catch
             otherwise
         end
     end
+    
 end

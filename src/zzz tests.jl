@@ -1,6 +1,22 @@
 using TidierIteration
 
 # adverbs.jl
+x = [1:10;]
+
+f(x) = x + 1
+
+letras = split("abcdefghijk", "") .|> string
+
+x = [Dict(letras[x] => x^2) for x ∈ 1:10]
+
+@chain x begin
+    @. map_asis(_, f)
+    # merge(_...)
+    @. keep(_, x -> x.second |> isodd)
+    compact
+    flatten_dfr
+end
+
 compose(x -> x^2, x -> x + 1).([1:5;])
 negate(isodd).([1:5;])
 possibly(log).([1, -1, "a"])

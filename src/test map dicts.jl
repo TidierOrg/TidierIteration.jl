@@ -14,7 +14,7 @@ end
 @chain begin
     d
     @aside @show _
-    map_asis(hash)    
+    map_asis(hash)
 end
 
 d = Dict(
@@ -60,3 +60,26 @@ dicts = [
 flatten_dfr(dicts, n = 0)
 flatten_dfr(dicts, n = 1)
 flatten_dfr(dicts, n = 2)
+
+flatten_dfr_json(dicts, n = 0)
+flatten_dfr_json(dicts, n = 1)
+flatten_dfr_json(dicts, n = 2)
+
+f = possibly(log, 0)
+function f2(x, y, z = 3; a = 9)
+    x + y + z + a
+end
+
+f2p = possibly(f2, -99)
+f2p(0)
+f2p(0, 0)
+f2p(0, 0, -1)
+f2p(0, 0, 1, a = 0)
+f2p(0, 0, 1, a = "a")
+f2p(0, 0, Dict(1=>2), a = "a")
+
+f3p = possibly(log, -999)
+
+f3p(1)
+f3p(0)
+f3p("a")
