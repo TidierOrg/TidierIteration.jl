@@ -13,5 +13,4 @@ discard
 discard!
 compact
 compact!
-
 ```

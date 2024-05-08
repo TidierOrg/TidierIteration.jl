@@ -1,6 +1,6 @@
 # TidierIteration.jl
 
-A [purrr](https://purrr.tidyverse.org/) implementation in pure Julia.
+Tools to deal with functions and collections in Julia, inspired by the [purrr](https://purrr.tidyverse.org/) R package.
 
 ```@contents
 ```

@@ -8,35 +8,16 @@ export @chain;
 
 using JSON3;
 
-include("basic map.jl");
+include("apply.jl");
 export 
-    map_type,
-    map_asis,
-    map_float,
-    map_int,
-    map_bool,
-    map_string,
-    walk;
-
-include("double maps.jl");
-export 
-    map2_asis,
-    map2_type,
-    map2_float,
-    map2_int,
-    map2_bool,
-    map2_string,
+    apply,
+    apply2,
+    apply_keys,
+    apply_dfc,
+    apply_dfr,
+    iapply,
+    walk, 
     walk2;
-
-include("imap.jl");
-export 
-    imap_asis,
-    imap_type,
-    imap_float,
-    imap_int,
-    imap_bool,
-    imap_string,
-    iwalk;
 
 include("modify.jl");
 export 
@@ -57,7 +38,11 @@ export
     is_non_empty,
     every, 
     some, 
-    none;
+    none, 
+    detect_index,
+    detect,
+    has_element,
+    has_key;
 
 include("adverbs.jl");
 export 
@@ -72,11 +57,8 @@ export
     flatten_n,
     flatten_dfr,
     flatten_json,
-    flatten_dfr_json;
-
-include("map dicts.jl");
-export 
-    map_asis,
-    imap_asis;
-
+    flatten_dfr_json, 
+    json_string, 
+    to_json;
+    
 end #module

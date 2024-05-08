@@ -38,12 +38,16 @@ end
 Create a modified version of the function `f` such that
 it returns `otherwise` when `f(x)` throws an error.
 """
-function possibly(f, otherwise = nothing)
+function possibly(f, otherwise = nothing; silently = true)
 
     function f2(args...; kwargs...)
         try
             f(args...; kwargs...)
         catch
+            if silently == false
+                @warn "Error executing function! Returning `nothing` instead..."
+            end
+            
             otherwise
         end
     end

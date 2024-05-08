@@ -59,7 +59,7 @@ Do none `x_i` in `x` satisfies `p`?
 none(x, p) = every(x, !p)
 
 function detect_index(x, p)
-    findfirst(f, x)
+    findfirst(p, x)
 end
 
 function detect(x, p)
@@ -71,5 +71,13 @@ function detect(x, p)
 end
 
 function has_element(x, y)
-    detect(x, z -> isequal(z, y))
+    id = detect(x, z -> isequal(z, y))
+
+    if isnothing(id) 
+        return false
+    else 
+        true 
+    end
 end
+
+has_key = haskey

@@ -32,7 +32,7 @@ makedocs(
     ,format = fmt
     ,pages = [
         "index.md"
-        ,"Mapping" => "maps.md"
+        ,"Mapping" => "apply.md"
         ,"Modifying" => "modify.md"
         ,"Predicates" => "predicates.md"
         ,"Adverbs" => "adverbs.md"

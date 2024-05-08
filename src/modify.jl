@@ -11,6 +11,14 @@ function modify!(x, f)
     x
 end
 
+function modify!(d::Dict, f)
+    for k ∈ keys(d)
+        d[k] = f(d[k])
+    end
+
+    d
+end
+
 """
     modify(x, f)
 
@@ -29,7 +37,7 @@ end
 Modify `x` applying `f` to each of its elements
 where the function `p` is `true`.
 """
-function modify_if!(x, p, f)
+function modify_if!(x, f, p)
     for (i, x_i) ∈ enumerate(x)
         if p(x_i)
             x[i] = f(x_i)
@@ -39,13 +47,23 @@ function modify_if!(x, p, f)
     x
 end
 
+function modify_if!(d::Dict, f, p)
+    for k ∈ keys(d)
+        if p(d[k])
+            d[k] = f(d[k])
+        end
+    end
+
+    d
+end
+
 """
     modify_if(x, p, f)
 
 Modify a copy of `x` applying `f` to each of its elements
 where the function `p` is `true`.
 """
-function modify_if(x, p, f)
+function modify_if(x, f, p)
     y = deepcopy(x)
     modify_if!(y, p, f)
 
@@ -62,6 +80,13 @@ function keep(x, p)
     filter(p, x)
 end
 
+function keep(d::Dict, p)
+    Dict(k => d[k] for k ∈ keys(d) if p(d[k]))
+end
+
+function keep_keys(d::Dict, p)
+    Dict(k => d[k] for k ∈ keys(d) if p(k))
+end
 """
     keep!(x, p)
 

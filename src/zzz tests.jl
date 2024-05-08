@@ -2,6 +2,7 @@ using TidierIteration
 
 # adverbs.jl
 x = [1:10;]
+map_asis(x, x -> x^2)
 
 f(x) = x + 1
 
@@ -94,9 +95,16 @@ d1 = Dict(
                 1 => 0
                 ,2 => 0
             )
-        )        
+        )
     )
 )
+
+map(d1) do x
+    x
+end
+
+d1["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"] = 21939812
+hash("aksokda")
 
 d2 = Dict(
         "id" => 2
@@ -134,5 +142,20 @@ for x ∈ eachcol(df)
     @show x
 end
 
-df
 
+v = [5:9;]
+enumerate(v) |> collect
+Dict(i => x for (i, x) ∈ enumerate(v))
+
+
+enumerate(d2) |> collect
+
+d2 |> Pair
+
+d2 = Dict(
+        "id" => 2
+        ,"sensor_data" => Dict(1 => 1, 2 => 0, 5 => 0)
+        ,"time" => "yesterday"
+    )
+
+d2 .|> first
