@@ -61,6 +61,10 @@ x
 modify_if!(x, isodd, x -> x^3)
 x
 
+
+x = [1, nothing, [], "a", [2, 3]]
+compact(x)
+
 # predicates.jl
 x = [1, [1, 2], [], Dict()]
 compact(x)

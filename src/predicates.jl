@@ -7,6 +7,9 @@ function is_empty(x)
     length(x) == 0
 end
 
+function is_empty(x::Nothing) 
+    true
+end
 
 """
     is_non_empty(x)

@@ -81,5 +81,5 @@ to_json(x::Dict) = x |> json_string
 to_json(x::Vector) = x |> json_string
 
 function flatten_json(d)
-    map_asis(d, to_json)
+    apply(d, to_json)
 end

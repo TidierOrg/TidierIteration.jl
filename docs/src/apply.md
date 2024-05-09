@@ -8,7 +8,9 @@ In base Julia there is already the `map` function, but
 
 - The function is the first argument, and the collection is the second. This make it less "pipeable".
 
-## `f` is a one-variable function
+We will cover some common cases below.
+
+## One variable, one collection
 
 Given a collection `x` and a one-variable function `f`, we can apply `f` to each element of `x` as follows:
 
@@ -62,9 +64,15 @@ Every member of the apply family has a optional named argument `T` which is a fu
 apply(x, f, T = string)
 ```
 
-## `f` is a two-variable function and we have two collections
+This is the same as
 
-We can also apply a two-variable function `f` to two collections `x` and `y` by applying `f` to each pair `(x_i, y_i)` where `x_i` is the `i-th` element of `x` and `y_i` the `i-th` element of `y`. If `x` and `y` have different sizes, we iterate until one of them ends.
+```@example 1
+apply(x, string ∘ f)
+```
+
+## Two variables, two collections
+
+We can apply a two-variable function `f` to two collections `x` and `y` by applying `f` to each pair `(x_i, y_i)` where `x_i` is the `i-th` element of `x` and `y_i` the `i-th` element of `y`. If `x` and `y` have different sizes, we iterate until one of them ends.
 
 ```@example 2
 using TidierIteration;
@@ -87,9 +95,9 @@ d2 = Dict(i => i^2 for i in [3:9;])
 apply2(d1, d2, f)
 ```
 
-## `f` is a two-variable function and we have only one collection
+## Two variables, one collection
 
-In this case, we can use the index of each element of `x` as the first variable to be applied on `f, that is, we apply `f` on the pairs `(i, x_i)` for each index `i` of `x`.
+In this case, we can use the index of each element of `x` as the first variable to be applied on `f`, that is, we apply `f` on the pairs `(i, x_i)` for each index `i` of `x`. It is important to note that `i` is the first argument to be passed to `f`.
 
 ```@example 3
 using TidierIteration;
@@ -108,7 +116,7 @@ g(k, v) = k + v
 iapply(d, g)
 ```
 
-## Converting to dataframe
+## One variable and one collection, dataframe output
 
 When the output of `f` is a dataframe, we can bind all rows (or columns) quickly as follows:
 
