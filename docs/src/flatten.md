@@ -68,7 +68,7 @@ flatten_dfr(ds, n = 2)
 
 If you want to convert the inner dictionaries/arrays to json (useful when saving to a relational database), use the function
 
-```@examples 1
+```@example 1
 flatten_dfr_json(ds, n = 1)
 ```
 
