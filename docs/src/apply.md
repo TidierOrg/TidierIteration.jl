@@ -14,7 +14,7 @@ We will cover some common cases below.
 
 Given a collection `x` and a one-variable function `f`, we can apply `f` to each element of `x` as follows:
 
-```@example 1
+```@example apply
 using TidierIteration;
 
 x = [3:6;];
@@ -24,22 +24,22 @@ apply(x, f)
 ```
 
 This, of course, is the same as
-```@example 1
+```@example apply
 map(f, x)
 ```
 
 or
-```@example 1
+```@example apply
 f.(x)
 ```
 
 Things get more interesting when we have a dictionary as follows:
 
-```@example 1
+```@example apply
 d = Dict(i => i for i in [1:4;])
 ```
 
-```@example 1
+```@example apply
 apply(d, f)
 ```
 
@@ -49,24 +49,18 @@ We can see a dictionary as a collection with named entries, and `apply(d, f)` me
 
 In case you want to modify the keys of a dictionary, there is the special function
 
-```@example 1
+```@example apply
 apply_keys(d, x -> -x)
 ```
 
 If you just want to apply `f` for its side-effects and return nothing, use
-```@example 1
+```@example apply
 walk(x, f)
 ```
 
-Every member of the apply family has a optional named argument `T` which is a function that will be applied to each element, usually to convert it to a specific type:
+In case you want to convert each output of `f` to a specific type, you can always pass a compose function:
 
-```@example 1
-apply(x, f, T = string)
-```
-
-This is the same as
-
-```@example 1
+```@example apply
 apply(x, string ∘ f)
 ```
 
@@ -74,7 +68,7 @@ apply(x, string ∘ f)
 
 We can apply a two-variable function `f` to two collections `x` and `y` by applying `f` to each pair `(x_i, y_i)` where `x_i` is the `i-th` element of `x` and `y_i` the `i-th` element of `y`. If `x` and `y` have different sizes, we iterate until one of them ends.
 
-```@example 2
+```@example apply2
 using TidierIteration;
 
 x = [1:4;]
@@ -86,8 +80,7 @@ apply2(x, y, f)
 
 When `x` and `y` are dictionaries, we iterate on the set of common keys:
 
-```@example 2
-using TidierIteration;
+```@example apply2
 
 d1 = Dict(i => i for i in [1:4;])
 d2 = Dict(i => i^2 for i in [3:9;])
@@ -99,7 +92,7 @@ apply2(d1, d2, f)
 
 In this case, we can use the index of each element of `x` as the first variable to be applied on `f`, that is, we apply `f` on the pairs `(i, x_i)` for each index `i` of `x`. It is important to note that `i` is the first argument to be passed to `f`.
 
-```@example 3
+```@example iapply
 using TidierIteration;
 
 x = [3:6;]
@@ -109,7 +102,7 @@ iapply(x, f)
 
 When `x` is a dictionary, the elements `i` are the keys of `x`:
 
-```@example 3
+```@example iapply
 d = Dict(i => i for i in [1:4;])
 g(k, v) = k + v
 
@@ -120,7 +113,7 @@ iapply(d, g)
 
 When the output of `f` is a dataframe, we can bind all rows (or columns) quickly as follows:
 
-```@example 4
+```@example apply_df
 using TidierIteration;
 
 x = [1:4;]
@@ -128,24 +121,45 @@ h(x) = DataFrame(:x => x)
 apply_dfr(x, h)
 ```
 
-or 
+or
 
-```@example 4
+```@example apply_df
 s = "abcd";
 h2(s) = DataFrame(string(s) => rand(1))
 h2("b")
 apply_dfc(s, h2)
 ```
 
+## p variables and one collection
+
+We can apply a `p`-variable function to a collection of `p` elements as follows:
+
+```@example papply
+using TidierIteration
+x = [
+    [1, 2], [3, 4], [5, 6]
+]
+f(x, y, z) = x + y + z
+
+papply(x, f)
+```
+
 ## API
 
-<!-- ```@docs
+```@docs
 apply
-apply2
 apply_keys
+walk
+
 apply_dfc
 apply_dfr
+
 iapply
-walk 
+iwalk 
+
+apply2
 walk2
-``` -->
+
+papply
+pwalk
+```

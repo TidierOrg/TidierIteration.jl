@@ -52,7 +52,7 @@ and concatenate on a dataframe.
 """
 function flatten_dfr(dicts; n::Int = 1)
     @chain dicts begin
-        @. flatten_n(n)(_)
+        apply(_, flatten_n(n))
         @. DataFrame
         vcat(_..., cols=:union)
     end
@@ -75,6 +75,11 @@ function flatten_dfr_json(dicts; n::Int = 1)
     end
 end
 
+"""
+    json_string(x)
+
+Convert `x` to a JSON string.
+"""
 json_string(x) = x |> JSON3.write |> string
 to_json(x) = x
 to_json(x::Dict) = x |> json_string

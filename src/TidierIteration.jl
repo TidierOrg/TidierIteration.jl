@@ -11,13 +11,19 @@ using JSON3;
 include("apply.jl");
 export 
     apply,
-    apply2,
     apply_keys,
     apply_dfc,
     apply_dfr,
-    iapply,
     walk, 
-    walk2;
+
+    apply2,
+    walk2,
+
+    iapply,
+    iwalk,
+    
+    papply,
+    pwalk;
 
 include("modify.jl");
 export 
@@ -27,6 +33,7 @@ export
     modify_if!,
     keep,
     keep!,
+    keep_keys,
     discard,
     discard!,
     compact,
@@ -42,7 +49,8 @@ export
     detect_index,
     detect,
     has_element,
-    has_key;
+    has_key, 
+    get_value;
 
 include("adverbs.jl");
 export 

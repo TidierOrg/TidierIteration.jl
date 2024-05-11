@@ -61,10 +61,22 @@ Do none `x_i` in `x` satisfies `p`?
 """
 none(x, p) = every(x, !p)
 
+"""
+    detect_index(x, p)
+
+Returns the index for the first element of 
+`x` where `p` is true.
+"""
 function detect_index(x, p)
     findfirst(p, x)
 end
 
+"""
+    detect(x, p)
+
+Returns the first element of 
+`x` where `p` is true.
+"""
 function detect(x, p)
     id = detect_index(x, p)
 
@@ -73,6 +85,11 @@ function detect(x, p)
     x[id]
 end
 
+"""
+    has_element(x, y)
+
+Returns `true` if `y` is an element of `x`.
+"""
 function has_element(x, y)
     id = detect(x, z -> isequal(z, y))
 
@@ -83,4 +100,23 @@ function has_element(x, y)
     end
 end
 
+"""
+    has_key(d, k)
+
+Returns `true` if the dictionary `d` has key `k`.
+"""
 has_key = haskey
+
+"""
+    get_value(d, k, v = nothing)
+
+Try to get the value `d[k]`, it it exists.
+Otherwise, return `v`.
+"""
+function get_value(d, k, v = nothing)
+    if has_key(d, k)
+        d[k]
+    else
+        v
+    end
+end

@@ -2,7 +2,7 @@
 
 The flatten family of functions aim to "reduce one level" of a object: if you have a dictionary where some values are also dictionaries, we "peel" this inner dictionary and spread it among the original dictionary. This is specially useful when parsing the output of a rest API and transforming it into a dataframe.
 
-## Dictionaries
+## Dictionaries and inner dictionaries
 
 Consider the following nested dictionary describing a vehicle:
 
@@ -27,22 +27,23 @@ d1 = Dict(
 We can flat the inner dictionaries as follows:
 
 ```@example 1
-flatten_dict(d1)
+d1
+flatten(d1, n = 1)
 ```
 
-We can apply the `flatten_dict` `n` consecutive times adding `n` to the end of the function call:
+We can apply the `flatten` `n` consecutive times adding `n` to the end of the function call:
 
 ```@example 1
-flatten_dict(d1, 2)
+flatten(d1, n = 2)
 ```
 
 Converting it to a dataframe is simple:
 
 ```@example 1
-flatten_dict(d1, 2) |> DataFrame
+flatten(d1, n = 1) |> DataFrame
 ```
 
-In case of a vector of nested dictionaries, there is the `flatten_dicts_to_df`:
+In case of a vector of nested dictionaries, there is the `flatten_dfr`:
 
 ```@example 1
 d2 = Dict(
@@ -62,12 +63,19 @@ d2 = Dict(
 
 ds = [d1, d2]
 
-flatten_dicts_to_df(ds, 2)
+flatten_dfr(ds, n = 2)
 ```
 
-## Functions
+If you want to convert the inner dictionaries/arrays to json (useful when saving to a relational database), use the function
+
+```@examples 1
+flatten_dfr_json(ds, n = 1)
+```
+
+## API
 
 ```@docs
-flatten_dict
-flatten_dicts_to_df
+flatten
+flatten_dfr
+flatten_dfr_json
 ```
