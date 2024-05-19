@@ -1,0 +1,49 @@
+---
+engine: julia
+---
+
+```{julia}
+#| include: false
+using Quartomenter;
+```
+
+
+# Adverbs
+
+Adverbs are functions that modify the behaviour of a function.
+
+## API
+
+
+```{julia}
+#| include: false
+using TidierIteration;
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc compose
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc compose_n
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc negate
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc possibly
+print(s)
+```

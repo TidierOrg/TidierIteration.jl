@@ -1,0 +1,84 @@
+---
+engine: julia
+---
+
+```{julia}
+#| include: false
+using Quartomenter;
+using TidierIteration;
+```
+
+
+# Predicates
+
+## API
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc is_empty
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc is_non_empty
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc every
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc some
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc none
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc detect_index
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc detect
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc has_element
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc has_key
+print(s)
+```
+
+```{julia}
+#| echo: false
+#| output: asis
+s = @qdoc get_value
+print(s)
+```

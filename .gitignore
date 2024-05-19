@@ -1,2 +1,5 @@
 docs/build/
 docs/node_modules/
+
+docs-documenter/build/
+docs-documenter/node_modules/

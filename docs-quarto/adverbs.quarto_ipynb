@@ -1,0 +1,90 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Adverbs\n",
+        "\n",
+        "Adverbs are functions that modify the behaviour of a function.\n",
+        "\n",
+        "## API\n"
+      ],
+      "id": "9c5dac56"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| include: false\n",
+        "using Quartomenter\n",
+        "using TidierIteration;"
+      ],
+      "id": "681e4e6d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: false\n",
+        "#| output: asis\n",
+        "s = @qdoc compose\n",
+        "print(s)"
+      ],
+      "id": "683d1e0a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: false\n",
+        "#| output: asis\n",
+        "s = @qdoc compose_n\n",
+        "print(s)"
+      ],
+      "id": "70409102",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: false\n",
+        "#| output: asis\n",
+        "s = @qdoc negate\n",
+        "print(s)"
+      ],
+      "id": "16b5488d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: false\n",
+        "#| output: asis\n",
+        "s = @qdoc possibly\n",
+        "print(s)"
+      ],
+      "id": "913e2d6a",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "julia-nodeps-1.9",
+      "language": "julia",
+      "display_name": "Julia nodeps 1.9.3",
+      "path": "/home/vituri/.local/share/jupyter/kernels/julia-nodeps-1.9"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

@@ -1,5 +1,5 @@
 """
-    apply(x, f; T = identity)
+    apply(x, f)
 
 Apply the function `f` to each element of `x` and return 
 an array. 
@@ -14,7 +14,7 @@ function apply(x, f)
 end
 
 """
-    apply(d, f)
+    apply(d::Dict, f)
 
 Apply the function `f` to each value of `d` and return 
 a dictionary with the same keys of `d`. 
@@ -29,7 +29,7 @@ function apply(d::Dict, f)
 end
 
 """
-    apply_keys(d, f)
+    apply_keys(d::Dict, f)
 
 Apply the function `f` to each key of `d` and return 
 a dictionary with the same values of `d`. 
@@ -72,7 +72,7 @@ end
 
 
 """
-    apply2(d1, d2, f)
+    apply2(d1::Dict, d2::Dict, f)
 
 The same as `Dict(k => f(d1[k], d2[k]) for k ∈ keys(d1) ∩ keys(d2))`,
 that is: we apply `f` on `(d1[k], d2[k])` for every `k` common
@@ -119,7 +119,7 @@ function iapply(x, f)
 end
 
 """
-    iapply(d, f)
+    iapply(d::Dict, f)
 
 Apply the function `f` to each pair `(k, d[k])` for
 `k` in the values-set of `d`.
@@ -171,7 +171,7 @@ bind all the columns into a dataframe.
 - `x`: an iterable collection.
 - `f`: a function that returns a DataFrame.
 """
-function apply_dfc(x, f; T = identity)
+function apply_dfc(x, f)
     apply(x, f) |> hcat_union
 end
 

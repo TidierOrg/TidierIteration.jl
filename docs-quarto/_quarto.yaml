@@ -1,0 +1,26 @@
+# git push origin :gh-pages && git subtree push --prefix docs origin gh-pages
+project:
+  type: website
+  output-dir: site
+
+engine: julia
+execute:
+  daemon: false
+
+website:
+  title: "TidierIteration"  
+  sidebar:
+    contents:
+      - index.qmd
+      - apply.qmd
+      - modify.qmd
+      - predicates.qmd      
+      - adverbs.qmd
+      - flatten.qmd      
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true    
+    code-link: true

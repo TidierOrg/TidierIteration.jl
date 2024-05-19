@@ -32,7 +32,7 @@ function modify(x, f)
 end
 
 """
-    modify_if!(x, p, f)
+    modify_if!(x, f, p)
 
 Modify `x` applying `f` to each of its elements
 where the function `p` is `true`.
@@ -58,14 +58,14 @@ function modify_if!(d::Dict, f, p)
 end
 
 """
-    modify_if(x, p, f)
+    modify_if(x, f, p)
 
 Modify a copy of `x` applying `f` to each of its elements
 where the function `p` is `true`.
 """
 function modify_if(x, f, p)
     y = deepcopy(x)
-    modify_if!(y, p, f)
+    modify_if!(y, f, p)
 
     y    
 end
