@@ -7,6 +7,8 @@ Functions to modify, filter and discard elements of a collection.
 `modify` applies a function `f` to each element of `x`.
 
 ```@example modify
+using TidierIteration;
+
 x = [1:4;]
 modify!(x, x->x^2)
 x
@@ -28,6 +30,8 @@ modify_if(y, x->x^2, isodd)
 We can discard some elements of `x` when a function `p` is false:
 
 ```@example keep
+using TidierIteration;
+
 x = [1:4;]
 keep(x, isodd)
 ```
