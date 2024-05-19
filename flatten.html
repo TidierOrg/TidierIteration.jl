@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TidierIteration</title>
+<title>TidierIteration – flatten</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -80,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">TidierIteration.jl</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./flatten.html">Flatten</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -107,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TidierIteration.jl</span></a>
   </div>
 </li>
@@ -137,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./flatten.html" class="sidebar-item-text sidebar-link">
+  <a href="./flatten.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Flatten</span></a>
   </div>
 </li>
@@ -151,7 +185,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tidieriteration.jl" id="toc-tidieriteration.jl" class="nav-link active" data-scroll-target="#tidieriteration.jl">TidierIteration.jl</a></li>
+  <li><a href="#flatten" id="toc-flatten" class="nav-link active" data-scroll-target="#flatten">Flatten</a>
+  <ul class="collapse">
+  <li><a href="#dictionaries-and-inner-dictionaries" id="toc-dictionaries-and-inner-dictionaries" class="nav-link" data-scroll-target="#dictionaries-and-inner-dictionaries">Dictionaries and inner dictionaries</a></li>
+  <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api">API</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -161,11 +199,278 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="tidieriteration.jl" class="level1">
-<h1>TidierIteration.jl</h1>
-<p>Tools to deal with functions and collections in Julia, inspired by the <a href="https://purrr.tidyverse.org/">purrr</a> R package.</p>
+<section id="flatten" class="level1">
+<h1>Flatten</h1>
+<p>The flatten family of functions aim to “reduce one level” of a object: if you have a dictionary where some values are also dictionaries, we “peel” this inner dictionary and spread it among the original dictionary. This is specially useful when parsing the output of a rest API and transforming it into a dataframe.</p>
+<section id="dictionaries-and-inner-dictionaries" class="level2">
+<h2 class="anchored" data-anchor-id="dictionaries-and-inner-dictionaries">Dictionaries and inner dictionaries</h2>
+<p>Consider the following nested dictionary describing a vehicle:</p>
+<div id="4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">TidierIteration</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> <span class="fu">Dict</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span> <span class="op">=&gt;</span> <span class="fl">1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ,<span class="st">"model"</span> <span class="op">=&gt;</span> <span class="st">"Kadettão"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ,<span class="st">"year"</span> <span class="op">=&gt;</span> <span class="fl">1998</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    ,<span class="st">"details"</span> <span class="op">=&gt;</span> <span class="fu">Dict</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"plate_number"</span> <span class="op">=&gt;</span> <span class="st">"XXX1234"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        ,<span class="st">"chassi"</span> <span class="op">=&gt;</span> <span class="fl">999</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        ,<span class="st">"location"</span> <span class="op">=&gt;</span> <span class="fu">Dict</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"country"</span> <span class="op">=&gt;</span> <span class="st">"Brasil"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">"state"</span> <span class="op">=&gt;</span> <span class="st">"São Paulo"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Dict{String, Any} with 4 entries:
+  "details" =&gt; Dict{String, Any}("plate_number"=&gt;"XXX1234", "location"=&gt;Dict("c…
+  "model"   =&gt; "Kadettão"
+  "year"    =&gt; 1998
+  "id"      =&gt; 1</code></pre>
+</div>
+</div>
+<p>We can flat the inner dictionaries as follows:</p>
+<div id="6" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d1</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">flatten</span>(d1, n <span class="op">=</span> <span class="fl">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Dict{String, Any} with 6 entries:
+  "model"                =&gt; "Kadettão"
+  "year"                 =&gt; 1998
+  "id"                   =&gt; 1
+  "details_chassi"       =&gt; 999
+  "details_plate_number" =&gt; "XXX1234"
+  "details_location"     =&gt; Dict("country"=&gt;"Brasil", "state"=&gt;"São Paulo")</code></pre>
+</div>
+</div>
+<p>We can apply the <code>flatten</code> <code>n</code> consecutive times adding <code>n</code> to the end of the function call:</p>
+<div id="8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flatten</span>(d1, n <span class="op">=</span> <span class="fl">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Dict{String, Any} with 7 entries:
+  "details_location_country" =&gt; "Brasil"
+  "details_location_state"   =&gt; "São Paulo"
+  "model"                    =&gt; "Kadettão"
+  "year"                     =&gt; 1998
+  "details_chassi"           =&gt; 999
+  "details_plate_number"     =&gt; "XXX1234"
+  "id"                       =&gt; 1</code></pre>
+</div>
+</div>
+<p>Converting it to a dataframe is simple:</p>
+<div id="10" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flatten</span>(d1, n <span class="op">=</span> <span class="fl">1</span>) <span class="op">|&gt;</span> DataFrame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>1×6 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_chassi</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_location</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_plate_number</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">id</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">model</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Dict{String, String}">Dict…</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: right;">999</td>
+<td style="text-align: left;">Dict("country"=&gt;"Brasil", "state"=&gt;"São Paulo")</td>
+<td style="text-align: left;">XXX1234</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Kadettão</td>
+<td style="text-align: right;">1998</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>In case of a vector of nested dictionaries, there is the <code>flatten_dfr</code>:</p>
+<div id="12" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> <span class="fu">Dict</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span> <span class="op">=&gt;</span> <span class="fl">2</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    ,<span class="st">"model"</span> <span class="op">=&gt;</span> <span class="st">"Monzão"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    ,<span class="st">"year"</span> <span class="op">=&gt;</span> <span class="fl">1995</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    ,<span class="st">"details"</span> <span class="op">=&gt;</span> <span class="fu">Dict</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"plate_number"</span> <span class="op">=&gt;</span> <span class="st">"ZZZ1234"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        ,<span class="st">"chassi"</span> <span class="op">=&gt;</span> <span class="fl">1234</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        ,<span class="st">"location"</span> <span class="op">=&gt;</span> <span class="fu">Dict</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"country"</span> <span class="op">=&gt;</span> <span class="st">"Brasil"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            ,<span class="st">"state"</span> <span class="op">=&gt;</span> <span class="st">"Amazonas"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        ,<span class="st">"stolen"</span> <span class="op">=&gt;</span> <span class="cn">true</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> [d1, d2]</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">flatten_dfr</span>(ds, n <span class="op">=</span> <span class="fl">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>2×8 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_chassi</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_location_country</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_location_state</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_plate_number</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">id</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">model</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">stolen</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Bool}">Bool?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: right;">999</td>
+<td style="text-align: left;">Brasil</td>
+<td style="text-align: left;">São Paulo</td>
+<td style="text-align: left;">XXX1234</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Kadettão</td>
+<td style="text-align: right;">1998</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: right;">1234</td>
+<td style="text-align: left;">Brasil</td>
+<td style="text-align: left;">Amazonas</td>
+<td style="text-align: left;">ZZZ1234</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Monzão</td>
+<td style="text-align: right;">1995</td>
+<td style="text-align: right;">true</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>If you want to convert the inner dictionaries/arrays to json (useful when saving to a relational database), use the function</p>
+<div id="14" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flatten_dfr_json</span>(ds, n <span class="op">=</span> <span class="fl">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div><div style="float: left;"><span>2×7 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_chassi</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_location</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">details_plate_number</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">id</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">model</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">stolen</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, Bool}">Bool?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: right;">999</td>
+<td style="text-align: left;">{"country":"Brasil","state":"São Paulo"}</td>
+<td style="text-align: left;">XXX1234</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Kadettão</td>
+<td style="text-align: right;">1998</td>
+<td style="text-align: right; font-style: italic;">missing</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: right;">1234</td>
+<td style="text-align: left;">{"country":"Brasil","state":"Amazonas"}</td>
+<td style="text-align: left;">ZZZ1234</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Monzão</td>
+<td style="text-align: right;">1995</td>
+<td style="text-align: right;">true</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="api" class="level2">
+<h2 class="anchored" data-anchor-id="api">API</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>flatten_dict(key, value)</code></pre>
+<p>Transform a pair <code>key</code> and <code>value</code> into a dictionary.</p>
+<pre><code>flatten_dict(key, value:: Dict{&lt;:Any, &lt;:Any})</code></pre>
+<p>Given a <code>key</code> and a <code>value</code> which is a dictionary, concatenate the <code>key</code> string to every other key of the dictionary <code>value</code>. A dictionary of dictionaries will become only a dictionary of values.</p>
+<p>Thus, we are “flattening” the inner dictionaries.</p>
+<pre><code>flatten_dict(dict::Dict{&lt;:Any, &lt;:Any}, n = 1)</code></pre>
+<p>Remove one layer of dictionaries of a dictionary.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>flatten_dfr(dicts::Vector{&lt;:Dict}, n::Int = 1)</code></pre>
+<p>Given a vector of dictionaries, flatten each of them and concatenate on a dataframe.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>flatten_dfr_json(dicts::Vector{&lt;:Dict}, n::Int = 1)</code></pre>
+<p>Given a vector of dictionaries, flatten each of them and concatenate on a dataframe; remaining vectors and dictionaries are converted to a json string.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

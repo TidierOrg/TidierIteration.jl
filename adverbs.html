@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TidierIteration</title>
+<title>TidierIteration – adverbs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">TidierIteration.jl</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./adverbs.html">Adverbs</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -107,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TidierIteration.jl</span></a>
   </div>
 </li>
@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./adverbs.html" class="sidebar-item-text sidebar-link">
+  <a href="./adverbs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Adverbs</span></a>
   </div>
 </li>
@@ -151,7 +151,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tidieriteration.jl" id="toc-tidieriteration.jl" class="nav-link active" data-scroll-target="#tidieriteration.jl">TidierIteration.jl</a></li>
+  <li><a href="#adverbs" id="toc-adverbs" class="nav-link active" data-scroll-target="#adverbs">Adverbs</a>
+  <ul class="collapse">
+  <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api">API</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -161,11 +164,59 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="tidieriteration.jl" class="level1">
-<h1>TidierIteration.jl</h1>
-<p>Tools to deal with functions and collections in Julia, inspired by the <a href="https://purrr.tidyverse.org/">purrr</a> R package.</p>
+<section id="adverbs" class="level1">
+<h1>Adverbs</h1>
+<p>Adverbs are functions that modify the behaviour of a function.</p>
+<section id="api" class="level2">
+<h2 class="anchored" data-anchor-id="api">API</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>compose(args...)</code></pre>
+<p>Create the composite function of the <code>args...</code>.</p>
+<p><code>compose(f1, f2)(x)</code> is equal to <code>f2(f1(x))</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>compose_n(f, n = 2)</code></pre>
+<p>Compose the function <code>f</code> with itself <code>n</code> times.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>negate(f)</code></pre>
+<p>Return a function which is the negation of <code>f</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>possibly(f, otherwise = nothing)</code></pre>
+<p>Create a modified version of the function <code>f</code> such that it returns <code>otherwise</code> when <code>f(x)</code> throws an error.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
