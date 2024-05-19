@@ -7,9 +7,7 @@
 
 ## What is TidierIteration.jl?
 
-TidierIteration.jl is a 100% Julia implementation of the `purrr` R package. It aims to ease
-the different ways to `map` Julia objects: arrays, dicts and so on. It also provides
-some tools of functional programming: adverbs, composition, safe-functions and more.
+TidierIteration.jl is a 100% Julia implementation of the `purrr` R package. It aims to ease the different ways to `map` (or `apply`) functions to Julia objects: arrays, dicts and so on. It also provides some tools of functional programming: adverbs, composition, safe-functions and more.
 
 ## Installation
 
@@ -28,3 +26,72 @@ or
 using Pkg
 Pkg.add(url="https://github.com/TidierOrg/TidierIteration")
 ```
+
+## Comparison to `purrr`
+
+In R [`purrr` package](https://purrr.tidyverse.org/), there are many ways to apply a function to each element of a set: the many `map_` variants (`map_lgl` returns a vector of logicals, `map_chr` returns a vector of strings/characters, etc) and so on exist because the `map` function returns a `list` in R, which is a wild beast (R lists allow any kind of elements, and few functions are optimized (i.e. vectorized) on them as opposed to vectors). In comparison, R vectors are always of just one type (integers, booleans, etc.)
+
+In Julia, arrays are already the most general structure in the sense that they can contain any kind of element. Arrays of just one type (say, integers) are still arrays. We don't need the `_lgl` and `_chr` variants.
+
+Besides that, the name `map` is already taken in Julia and its arguments are fatally in the opposite order of the purrr `map`! Because of that, I decided to implement the `apply` function, which takes an iterable object `x` as the first argument and a function `f` as the second. So `apply(x, f)` means that for each element of `x` I want to apply the function `f` and return an array.
+
+So, instead of defining a function like `map_int` in Julia, you can just type
+```
+apply(x, Int ∘ f)
+```
+or, even better, let `f` return an integer.
+
+### Base Julia `map`ping
+
+In Julia we already have 3 ways to apply a function to each element of an array `x`, and they are very elegant ones:
+
+```
+map(f, x)
+```
+
+or 
+
+```
+[f(xi) for xi ∈ x]
+```
+
+or the one I prefer:
+
+```
+f.(x)
+```
+
+### Why use `TidierIteration` then?
+
+- The object `x` is always the first element of the `apply` family, so it's easy to pipe them;
+
+- We extend the `apply` family to Julia objects which are not `map`ped by default, like dictionaries;
+
+- We also provide the `apply2`, `iapply` and `papply` methods to `map` over 2 or n elements at the same time;
+
+- We provide the `flatten_*` functions to tidy wild dictionaries (like JSON responses from APIs) and many adverbs.
+
+## Complete list of implemented functions
+
+See the [documentation](https://tidierorg.github.io/TidierIteration.jl/dev/) for examples.
+
+### Apply
+
+apply, apply_keys, apply_dfc, apply_dfr, walk, apply2, walk2, iapply, iwalk, papply, pwalk;
+
+### Modify
+
+modify, modify!, modify_if, modify_if!, keep, keep!, keep_keys, discard, discard!, compact, compact!;
+
+### Predicates
+
+is_empty, is_non_empty, every, some, none, detect_index, detect, has_element, has_key, get_value;
+
+### Adverbs
+
+compose, compose_n, negate, possibly;
+
+### Flatten
+
+flatten, flatten_n, flatten_dfr, flatten_json, flatten_dfr_json, json_string, to_json;
+
