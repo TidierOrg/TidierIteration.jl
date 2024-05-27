@@ -4,189 +4,604 @@
     "href": "index.html",
     "title": "TidierIteration.jl",
     "section": "",
-    "text": "TidierIteration.jl\nTools to deal with functions and collections in Julia, inspired by the purrr R package.",
+    "text": "TidierIteration.jl is a 100% Julia implementation of the purrr R package. It aims to ease the different ways to map (or apply) functions to Julia objects: arrays, dicts and so on. It also provides some tools of functional programming: adverbs, composition, safe-functions and more.\n\n\n\nFor the stable version:\n] add https://github.com/TidierOrg/TidierIteration\nThe ] character starts the Julia package manager. Press the backspace key to return to the Julia prompt.\nor\nusing Pkg\nPkg.add(url=\"https://github.com/TidierOrg/TidierIteration\")\n\n\n\nIn R purrr package, there are many ways to apply a function to each element of a set: the many map_ variants (map_lgl returns a vector of logicals, map_chr returns a vector of strings/characters, etc) and so on exist because the map function returns a list in R, which is a wild beast (R lists allow any kind of elements, and few functions are optimized (i.e. vectorized) on them as opposed to vectors). In comparison, R vectors are always of just one type (integers, booleans, etc.)\nIn Julia, arrays are already the most general structure in the sense that they can contain any kind of element. Arrays of just one type (say, integers) are still arrays. We don’t need the _lgl and _chr variants.\nBesides that, the name map is already taken in Julia and its arguments are fatally in the opposite order of the purrr map! Because of that, I decided to implement the apply function, which takes an iterable object x as the first argument and a function f as the second. So apply(x, f) means that for each element of x I want to apply the function f and return an array.\nSo, instead of defining a function like map_int in Julia, you can just type\napply(x, Int ∘ f)\nor, even better, let f return an integer.\n\n\nIn Julia we already have 3 ways to apply a function to each element of an array x, and they are very elegant ones:\nmap(f, x)\nor\n[f(xi) for xi ∈ x]\nor the one I prefer:\nf.(x)\n\n\n\n\nThe object x is always the first element of the apply family, so it’s easy to pipe them;\nWe extend the apply family to Julia objects which are not mapped by default, like dictionaries;\nWe also provide the apply2, iapply and papply methods to map over 2 or n elements at the same time;\nWe provide the flatten_* functions to tidy wild dictionaries (like JSON responses from APIs) and many adverbs.\n\n\n\n\n\nSee the documentation for examples.\n\n\napply, apply_keys, apply_dfc, apply_dfr, walk, apply2, walk2, iapply, iwalk, papply, pwalk;\n\n\n\nmodify, modify!, modify_if, modify_if!, keep, keep!, keep_keys, discard, discard!, compact, compact!;\n\n\n\nis_empty, is_non_empty, every, some, none, detect_index, detect, has_element, has_key, get_value;\n\n\n\ncompose, compose_n, negate, possibly;\n\n\n\nflatten, flatten_n, flatten_dfr, flatten_json, flatten_dfr_json, json_string, to_json;"
+  },
+  {
+    "objectID": "index.html#what-is-tidieriteration.jl",
+    "href": "index.html#what-is-tidieriteration.jl",
+    "title": "TidierIteration.jl",
+    "section": "",
+    "text": "TidierIteration.jl is a 100% Julia implementation of the purrr R package. It aims to ease the different ways to map (or apply) functions to Julia objects: arrays, dicts and so on. It also provides some tools of functional programming: adverbs, composition, safe-functions and more."
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "TidierIteration.jl",
+    "section": "",
+    "text": "For the stable version:\n] add https://github.com/TidierOrg/TidierIteration\nThe ] character starts the Julia package manager. Press the backspace key to return to the Julia prompt.\nor\nusing Pkg\nPkg.add(url=\"https://github.com/TidierOrg/TidierIteration\")"
+  },
+  {
+    "objectID": "index.html#comparison-to-purrr",
+    "href": "index.html#comparison-to-purrr",
+    "title": "TidierIteration.jl",
+    "section": "",
+    "text": "In R purrr package, there are many ways to apply a function to each element of a set: the many map_ variants (map_lgl returns a vector of logicals, map_chr returns a vector of strings/characters, etc) and so on exist because the map function returns a list in R, which is a wild beast (R lists allow any kind of elements, and few functions are optimized (i.e. vectorized) on them as opposed to vectors). In comparison, R vectors are always of just one type (integers, booleans, etc.)\nIn Julia, arrays are already the most general structure in the sense that they can contain any kind of element. Arrays of just one type (say, integers) are still arrays. We don’t need the _lgl and _chr variants.\nBesides that, the name map is already taken in Julia and its arguments are fatally in the opposite order of the purrr map! Because of that, I decided to implement the apply function, which takes an iterable object x as the first argument and a function f as the second. So apply(x, f) means that for each element of x I want to apply the function f and return an array.\nSo, instead of defining a function like map_int in Julia, you can just type\napply(x, Int ∘ f)\nor, even better, let f return an integer.\n\n\nIn Julia we already have 3 ways to apply a function to each element of an array x, and they are very elegant ones:\nmap(f, x)\nor\n[f(xi) for xi ∈ x]\nor the one I prefer:\nf.(x)\n\n\n\n\nThe object x is always the first element of the apply family, so it’s easy to pipe them;\nWe extend the apply family to Julia objects which are not mapped by default, like dictionaries;\nWe also provide the apply2, iapply and papply methods to map over 2 or n elements at the same time;\nWe provide the flatten_* functions to tidy wild dictionaries (like JSON responses from APIs) and many adverbs."
+  },
+  {
+    "objectID": "index.html#complete-list-of-implemented-functions",
+    "href": "index.html#complete-list-of-implemented-functions",
+    "title": "TidierIteration.jl",
+    "section": "",
+    "text": "See the documentation for examples.\n\n\napply, apply_keys, apply_dfc, apply_dfr, walk, apply2, walk2, iapply, iwalk, papply, pwalk;\n\n\n\nmodify, modify!, modify_if, modify_if!, keep, keep!, keep_keys, discard, discard!, compact, compact!;\n\n\n\nis_empty, is_non_empty, every, some, none, detect_index, detect, has_element, has_key, get_value;\n\n\n\ncompose, compose_n, negate, possibly;\n\n\n\nflatten, flatten_n, flatten_dfr, flatten_json, flatten_dfr_json, json_string, to_json;"
+  },
+  {
+    "objectID": "reference/discard.html",
+    "href": "reference/discard.html",
+    "title": "discard",
+    "section": "",
+    "text": "discard\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\ndiscard(x, p)\n\nDiscard the elements x_i of collection x such that p(x_i) is true.",
     "crumbs": [
-      "TidierIteration.jl"
+      "Reference",
+      "discard"
     ]
   },
   {
-    "objectID": "adverbs.html",
-    "href": "adverbs.html",
-    "title": "Adverbs",
+    "objectID": "reference/modify_if.html",
+    "href": "reference/modify_if.html",
+    "title": "modify_if",
     "section": "",
-    "text": "Adverbs are functions that modify the behaviour of a function.\n\n\n\n\n\n\n\n\ncompose(args...)\nCreate the composite function of the args....\ncompose(f1, f2)(x) is equal to f2(f1(x)).\n\n\n\n\n\n\n\n\n\ncompose_n(f, n = 2)\nCompose the function f with itself n times.\n\n\n\n\n\n\n\n\n\nnegate(f)\nReturn a function which is the negation of f.\n\n\n\n\n\n\n\n\n\npossibly(f, otherwise = nothing)\nCreate a modified version of the function f such that it returns otherwise when f(x) throws an error.",
+    "text": "modify_if\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nmodify_if(x, f, p)\n\nModify a copy of x applying f to each of its elements where the function p is true.",
     "crumbs": [
-      "Adverbs"
+      "Reference",
+      "modify_if"
     ]
   },
   {
-    "objectID": "adverbs.html#api",
-    "href": "adverbs.html#api",
-    "title": "Adverbs",
+    "objectID": "reference/modify.html",
+    "href": "reference/modify.html",
+    "title": "modify",
     "section": "",
-    "text": "compose(args...)\nCreate the composite function of the args....\ncompose(f1, f2)(x) is equal to f2(f1(x)).\n\n\n\n\n\n\n\n\n\ncompose_n(f, n = 2)\nCompose the function f with itself n times.\n\n\n\n\n\n\n\n\n\nnegate(f)\nReturn a function which is the negation of f.\n\n\n\n\n\n\n\n\n\npossibly(f, otherwise = nothing)\nCreate a modified version of the function f such that it returns otherwise when f(x) throws an error.",
+    "text": "modify\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nmodify(x, f)\n\nModify a copy of x applying f to each of its elements.",
     "crumbs": [
-      "Adverbs"
+      "Reference",
+      "modify"
     ]
   },
   {
-    "objectID": "apply.html",
-    "href": "apply.html",
-    "title": "Applying functions to collections",
+    "objectID": "reference/keep!.html",
+    "href": "reference/keep!.html",
+    "title": "keep!",
     "section": "",
-    "text": "The apply family consists of functions that help apply a function f to a collection x.\nIn base Julia there is already the map function, but\n\nIt does not work on dictionaries;\nThe function is the first argument, and the collection is the second. This make it less “pipeable”.\n\nWe will cover some common cases below.\n\n\nGiven a collection x and a one-variable function f, we can apply f to each element of x as follows:\n\nusing TidierIteration;\n\nx = [3:6;];\nf(x) = x^2;\n\napply(x, f)\n\n4-element Vector{Int64}:\n  9\n 16\n 25\n 36\n\n\nThis, of course, is the same as\n\nmap(f, x)\n\n4-element Vector{Int64}:\n  9\n 16\n 25\n 36\n\n\nor\n\nf.(x)\n\n4-element Vector{Int64}:\n  9\n 16\n 25\n 36\n\n\nThings get more interesting when we have a dictionary as follows:\n\nd = Dict(i =&gt; i for i in [1:4;])\n\nDict{Int64, Int64} with 4 entries:\n  4 =&gt; 4\n  2 =&gt; 2\n  3 =&gt; 3\n  1 =&gt; 1\n\n\n\napply(d, f)\n\nDict{Int64, Int64} with 4 entries:\n  4 =&gt; 16\n  2 =&gt; 4\n  3 =&gt; 9\n  1 =&gt; 1\n\n\nwhile map(f, d) gives an error.\nWe can see a dictionary as a collection with named entries, and apply(d, f) means that we apply f to each value of d while keeping the keys of d intact.\nIn case you want to modify the keys of a dictionary, there is the special function\n\napply_keys(d, x -&gt; -x)\n\nDict{Int64, Int64} with 4 entries:\n  -1 =&gt; 1\n  -3 =&gt; 3\n  -2 =&gt; 2\n  -4 =&gt; 4\n\n\nIf you just want to apply f for its side-effects and return nothing, use\n\nwalk(x, f)\n\nIn case you want to convert each output of f to a specific type, you can always pass a compose function:\n\napply(x, string ∘ f)\n\n4-element Vector{String}:\n \"9\"\n \"16\"\n \"25\"\n \"36\"\n\n\n\n\n\nWe can apply a two-variable function f to two collections x and y by applying f to each pair (x_i, y_i) where x_i is the i-th element of x and y_i the i-th element of y. If x and y have different sizes, we iterate until one of them ends.\n\nx = [1:4;]\ny = [5:7;]\nf(x, y) = x + y\n\napply2(x, y, f)\n\n3-element Vector{Int64}:\n  6\n  8\n 10\n\n\nWhen x and y are dictionaries, we iterate on the set of common keys:\n\n\nd1 = Dict(i =&gt; i for i in [1:4;])\nd2 = Dict(i =&gt; i^2 for i in [3:9;])\n\napply2(d1, d2, f)\n\nDict{Int64, Int64} with 2 entries:\n  4 =&gt; 20\n  3 =&gt; 12\n\n\n\n\n\nIn this case, we can use the index of each element of x as the first variable to be applied on f, that is, we apply f on the pairs (i, x_i) for each index i of x. It is important to note that i is the first argument to be passed to f.\n\nx = [3:6;]\ng(i, x) = Dict(i =&gt; x)\niapply(x, g)\n\n4-element Vector{Dict{Int64, Int64}}:\n Dict(1 =&gt; 3)\n Dict(2 =&gt; 4)\n Dict(3 =&gt; 5)\n Dict(4 =&gt; 6)\n\n\nWhen x is a dictionary, the elements i are the keys of x:\n\nd = Dict(i =&gt; i for i in [1:4;])\nh(k, v) = k + v\n\niapply(d, h)\n\nDict{Int64, Int64} with 4 entries:\n  4 =&gt; 8\n  2 =&gt; 4\n  3 =&gt; 6\n  1 =&gt; 2\n\n\n\n\n\nWhen the output of f is a dataframe, we can bind all rows (or columns) quickly as follows:\n\nx = [1:4;]\nh1(x) = DataFrame(:x =&gt; x)\napply_dfr(x, h1)\n\n4×1 DataFrame\n\n\n\nRow\nx\n\n\n\nInt64\n\n\n\n\n1\n1\n\n\n2\n2\n\n\n3\n3\n\n\n4\n4\n\n\n\n\n\n\nor\n\ns = \"abcd\";\nh2(s) = DataFrame(string(s) =&gt; rand(1))\nh2(\"b\")\napply_dfc(s, h2)\n\n1×4 DataFrame\n\n\n\nRow\na\nb\nc\nd\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n0.846325\n0.506736\n0.616085\n0.466583\n\n\n\n\n\n\n\n\n\nWe can apply a p-variable function to a collection of p elements as follows:\n\nx = [\n    [1, 2], [3, 4], [5, 6]\n]\nf(x, y, z) = x + y + z\n\npapply(x, f)\n\n2-element Vector{Int64}:\n  9\n 12\n\n\n\n\n\n\n\n\n\n\n\napply(x, f)\nApply the function f to each element of x and return an array.\n\n\n\nx: an iterable collection.\nf: a function.\n\napply(d::Dict, f)\nApply the function f to each value of d and return a dictionary with the same keys of d.\n\n\n\n\nd: a dictionary.\nf: a function.\n\n\n\n\n\n\n\n\n\n\n\napply_keys(d::Dict, f)\nApply the function f to each key of d and return a dictionary with the same values of d.\n\n\n\nd: a dictionary.\nf: a function.\n\n\n\n\n\n\n\n\n\n\n\nwalk(x, f)\nThe same as apply(x, f) but returns nothing.\n\n\n\n\n\n\n\n\n\napply_dfc(x, f)\nApply the function f to each element of x and bind all the columns into a dataframe.\n\n\n\nx: an iterable collection.\nf: a function that returns a DataFrame.\n\n\n\n\n\n\n\n\n\n\n\napply_dfr(x, f)\nApply the function f to each element of x and bind all the rows into a dataframe.\n\n\n\nx: an iterable collection.\nf: a function that returns a DataFrame.\n\n\n\n\n\n\n\n\n\n\n\niapply(x, f)\nApply the function f to each pair (i, x_i) for i in the index set of x.\n\n\n\nx: an iterable collection.\nf: a two-variable function.\n\niapply(d::Dict, f)\nApply the function f to each pair (k, d[k]) for k in the values-set of d.\n\n\n\n\nd: a dictionary.\nf: a two-variable function.\n\n\n\n\n\n\n\n\n\n\n\niwalk(x, f)\nThe same as iapply(x, f) but returns nothing.\n\n\n\n\n\n\n\n\n\napply2(x, y, f)\nApply the 2-variable function f to each element pair (x_i, y_i) where x_i (resp. y_i) is the i-th element of x (resp. y).\n\n\n\nx: an iterable collection.\ny: an iterable collection.\nf: a two-variable function.\n\napply2(d1::Dict, d2::Dict, f)\nThe same as Dict(k =&gt; f(d1[k], d2[k]) for k ∈ keys(d1) ∩ keys(d2)), that is: we apply f on (d1[k], d2[k]) for every k common key between d1 and d2.\n\n\n\n\nd1: a dictionary.\nd2: a dictionary.\nf: a two-variable function.\n\n\n\n\n\n\n\n\n\n\n\nwalk2(x, y, f)\nThe same as apply2(x, y, f) but returns nothing.\n\n\n\n\n\n\n\n\n\npapply(x, f)\nApply the function f to each element of x. This is a generalization of apply2.\n\n\n\nx: an iterable collection.\nf: a function with as many variables as there\n\nare elements in x.\n\n\n\n\n\n\n\n\n\n\npwalk(x, f)\nThe same as papply(x, f) but returns nothing.",
+    "text": "keep!\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nkeep!(x, p)\n\nKeep the elements x_i of collection x such that p(x_i) is true.",
     "crumbs": [
-      "Applying functions to collections"
+      "Reference",
+      "keep!"
     ]
   },
   {
-    "objectID": "apply.html#one-variable-one-collection",
-    "href": "apply.html#one-variable-one-collection",
-    "title": "Applying functions to collections",
+    "objectID": "reference/discard!.html",
+    "href": "reference/discard!.html",
+    "title": "discard!",
     "section": "",
-    "text": "Given a collection x and a one-variable function f, we can apply f to each element of x as follows:\n\nusing TidierIteration;\n\nx = [3:6;];\nf(x) = x^2;\n\napply(x, f)\n\n4-element Vector{Int64}:\n  9\n 16\n 25\n 36\n\n\nThis, of course, is the same as\n\nmap(f, x)\n\n4-element Vector{Int64}:\n  9\n 16\n 25\n 36\n\n\nor\n\nf.(x)\n\n4-element Vector{Int64}:\n  9\n 16\n 25\n 36\n\n\nThings get more interesting when we have a dictionary as follows:\n\nd = Dict(i =&gt; i for i in [1:4;])\n\nDict{Int64, Int64} with 4 entries:\n  4 =&gt; 4\n  2 =&gt; 2\n  3 =&gt; 3\n  1 =&gt; 1\n\n\n\napply(d, f)\n\nDict{Int64, Int64} with 4 entries:\n  4 =&gt; 16\n  2 =&gt; 4\n  3 =&gt; 9\n  1 =&gt; 1\n\n\nwhile map(f, d) gives an error.\nWe can see a dictionary as a collection with named entries, and apply(d, f) means that we apply f to each value of d while keeping the keys of d intact.\nIn case you want to modify the keys of a dictionary, there is the special function\n\napply_keys(d, x -&gt; -x)\n\nDict{Int64, Int64} with 4 entries:\n  -1 =&gt; 1\n  -3 =&gt; 3\n  -2 =&gt; 2\n  -4 =&gt; 4\n\n\nIf you just want to apply f for its side-effects and return nothing, use\n\nwalk(x, f)\n\nIn case you want to convert each output of f to a specific type, you can always pass a compose function:\n\napply(x, string ∘ f)\n\n4-element Vector{String}:\n \"9\"\n \"16\"\n \"25\"\n \"36\"",
+    "text": "discard!\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\ndiscard!(x, p)\n\nDiscard the elements x_i of collection x such that p(x_i) is true.",
     "crumbs": [
-      "Applying functions to collections"
+      "Reference",
+      "discard!"
     ]
   },
   {
-    "objectID": "apply.html#two-variables-two-collections",
-    "href": "apply.html#two-variables-two-collections",
-    "title": "Applying functions to collections",
+    "objectID": "reference/detect_index.html",
+    "href": "reference/detect_index.html",
+    "title": "detect_index",
     "section": "",
-    "text": "We can apply a two-variable function f to two collections x and y by applying f to each pair (x_i, y_i) where x_i is the i-th element of x and y_i the i-th element of y. If x and y have different sizes, we iterate until one of them ends.\n\nx = [1:4;]\ny = [5:7;]\nf(x, y) = x + y\n\napply2(x, y, f)\n\n3-element Vector{Int64}:\n  6\n  8\n 10\n\n\nWhen x and y are dictionaries, we iterate on the set of common keys:\n\n\nd1 = Dict(i =&gt; i for i in [1:4;])\nd2 = Dict(i =&gt; i^2 for i in [3:9;])\n\napply2(d1, d2, f)\n\nDict{Int64, Int64} with 2 entries:\n  4 =&gt; 20\n  3 =&gt; 12",
+    "text": "detect_index\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\ndetect_index(x, p)\n\nReturns the index for the first element of x where p is true.",
     "crumbs": [
-      "Applying functions to collections"
+      "Reference",
+      "detect_index"
     ]
   },
   {
-    "objectID": "apply.html#two-variables-one-collection",
-    "href": "apply.html#two-variables-one-collection",
-    "title": "Applying functions to collections",
+    "objectID": "reference/is_non_empty.html",
+    "href": "reference/is_non_empty.html",
+    "title": "is_non_empty",
     "section": "",
-    "text": "In this case, we can use the index of each element of x as the first variable to be applied on f, that is, we apply f on the pairs (i, x_i) for each index i of x. It is important to note that i is the first argument to be passed to f.\n\nx = [3:6;]\ng(i, x) = Dict(i =&gt; x)\niapply(x, g)\n\n4-element Vector{Dict{Int64, Int64}}:\n Dict(1 =&gt; 3)\n Dict(2 =&gt; 4)\n Dict(3 =&gt; 5)\n Dict(4 =&gt; 6)\n\n\nWhen x is a dictionary, the elements i are the keys of x:\n\nd = Dict(i =&gt; i for i in [1:4;])\nh(k, v) = k + v\n\niapply(d, h)\n\nDict{Int64, Int64} with 4 entries:\n  4 =&gt; 8\n  2 =&gt; 4\n  3 =&gt; 6\n  1 =&gt; 2",
+    "text": "is_non_empty\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nis_non_empty(x)\n\nCheck if a object has length greater than 0.",
     "crumbs": [
-      "Applying functions to collections"
+      "Reference",
+      "is_non_empty"
     ]
   },
   {
-    "objectID": "apply.html#one-variable-and-one-collection-dataframe-output",
-    "href": "apply.html#one-variable-and-one-collection-dataframe-output",
-    "title": "Applying functions to collections",
+    "objectID": "reference/modify!.html",
+    "href": "reference/modify!.html",
+    "title": "modify!",
     "section": "",
-    "text": "When the output of f is a dataframe, we can bind all rows (or columns) quickly as follows:\n\nx = [1:4;]\nh1(x) = DataFrame(:x =&gt; x)\napply_dfr(x, h1)\n\n4×1 DataFrame\n\n\n\nRow\nx\n\n\n\nInt64\n\n\n\n\n1\n1\n\n\n2\n2\n\n\n3\n3\n\n\n4\n4\n\n\n\n\n\n\nor\n\ns = \"abcd\";\nh2(s) = DataFrame(string(s) =&gt; rand(1))\nh2(\"b\")\napply_dfc(s, h2)\n\n1×4 DataFrame\n\n\n\nRow\na\nb\nc\nd\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n0.846325\n0.506736\n0.616085\n0.466583",
+    "text": "modify!\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nmodify!(x, f)\n\nModify x applying f to each of its elements.",
     "crumbs": [
-      "Applying functions to collections"
+      "Reference",
+      "modify!"
     ]
   },
   {
-    "objectID": "apply.html#p-variables-and-one-collection",
-    "href": "apply.html#p-variables-and-one-collection",
-    "title": "Applying functions to collections",
+    "objectID": "reference/none.html",
+    "href": "reference/none.html",
+    "title": "none",
     "section": "",
-    "text": "We can apply a p-variable function to a collection of p elements as follows:\n\nx = [\n    [1, 2], [3, 4], [5, 6]\n]\nf(x, y, z) = x + y + z\n\npapply(x, f)\n\n2-element Vector{Int64}:\n  9\n 12",
+    "text": "none\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nnone(x, p)\n\nDo none x_i in x satisfies p?",
     "crumbs": [
-      "Applying functions to collections"
+      "Reference",
+      "none"
     ]
   },
   {
-    "objectID": "apply.html#api",
-    "href": "apply.html#api",
-    "title": "Applying functions to collections",
+    "objectID": "reference/some.html",
+    "href": "reference/some.html",
+    "title": "some",
     "section": "",
-    "text": "apply(x, f)\nApply the function f to each element of x and return an array.\n\n\n\nx: an iterable collection.\nf: a function.\n\napply(d::Dict, f)\nApply the function f to each value of d and return a dictionary with the same keys of d.\n\n\n\n\nd: a dictionary.\nf: a function.\n\n\n\n\n\n\n\n\n\n\n\napply_keys(d::Dict, f)\nApply the function f to each key of d and return a dictionary with the same values of d.\n\n\n\nd: a dictionary.\nf: a function.\n\n\n\n\n\n\n\n\n\n\n\nwalk(x, f)\nThe same as apply(x, f) but returns nothing.\n\n\n\n\n\n\n\n\n\napply_dfc(x, f)\nApply the function f to each element of x and bind all the columns into a dataframe.\n\n\n\nx: an iterable collection.\nf: a function that returns a DataFrame.\n\n\n\n\n\n\n\n\n\n\n\napply_dfr(x, f)\nApply the function f to each element of x and bind all the rows into a dataframe.\n\n\n\nx: an iterable collection.\nf: a function that returns a DataFrame.\n\n\n\n\n\n\n\n\n\n\n\niapply(x, f)\nApply the function f to each pair (i, x_i) for i in the index set of x.\n\n\n\nx: an iterable collection.\nf: a two-variable function.\n\niapply(d::Dict, f)\nApply the function f to each pair (k, d[k]) for k in the values-set of d.\n\n\n\n\nd: a dictionary.\nf: a two-variable function.\n\n\n\n\n\n\n\n\n\n\n\niwalk(x, f)\nThe same as iapply(x, f) but returns nothing.\n\n\n\n\n\n\n\n\n\napply2(x, y, f)\nApply the 2-variable function f to each element pair (x_i, y_i) where x_i (resp. y_i) is the i-th element of x (resp. y).\n\n\n\nx: an iterable collection.\ny: an iterable collection.\nf: a two-variable function.\n\napply2(d1::Dict, d2::Dict, f)\nThe same as Dict(k =&gt; f(d1[k], d2[k]) for k ∈ keys(d1) ∩ keys(d2)), that is: we apply f on (d1[k], d2[k]) for every k common key between d1 and d2.\n\n\n\n\nd1: a dictionary.\nd2: a dictionary.\nf: a two-variable function.\n\n\n\n\n\n\n\n\n\n\n\nwalk2(x, y, f)\nThe same as apply2(x, y, f) but returns nothing.\n\n\n\n\n\n\n\n\n\npapply(x, f)\nApply the function f to each element of x. This is a generalization of apply2.\n\n\n\nx: an iterable collection.\nf: a function with as many variables as there\n\nare elements in x.\n\n\n\n\n\n\n\n\n\n\npwalk(x, f)\nThe same as papply(x, f) but returns nothing.",
+    "text": "some\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nsome(x, p)\n\nDo some x_i in x satisfies p?",
     "crumbs": [
-      "Applying functions to collections"
+      "Reference",
+      "some"
     ]
   },
   {
-    "objectID": "flatten.html",
-    "href": "flatten.html",
-    "title": "Flatten",
+    "objectID": "reference/every.html",
+    "href": "reference/every.html",
+    "title": "every",
     "section": "",
-    "text": "The flatten family of functions aim to “reduce one level” of a object: if you have a dictionary where some values are also dictionaries, we “peel” this inner dictionary and spread it among the original dictionary. This is specially useful when parsing the output of a rest API and transforming it into a dataframe.\n\n\nConsider the following nested dictionary describing a vehicle:\n\nusing TidierIteration\n\nd1 = Dict(\n    \"id\" =&gt; 1\n    ,\"model\" =&gt; \"Kadettão\"\n    ,\"year\" =&gt; 1998\n    ,\"details\" =&gt; Dict(\n        \"plate_number\" =&gt; \"XXX1234\"\n        ,\"chassi\" =&gt; 999\n        ,\"location\" =&gt; Dict(\n            \"country\" =&gt; \"Brasil\"\n            ,\"state\" =&gt; \"São Paulo\"\n            )\n        )\n    )\n\nDict{String, Any} with 4 entries:\n  \"details\" =&gt; Dict{String, Any}(\"plate_number\"=&gt;\"XXX1234\", \"location\"=&gt;Dict(\"c…\n  \"model\"   =&gt; \"Kadettão\"\n  \"year\"    =&gt; 1998\n  \"id\"      =&gt; 1\n\n\nWe can flat the inner dictionaries as follows:\n\nd1\nflatten(d1, n = 1)\n\nDict{String, Any} with 6 entries:\n  \"model\"                =&gt; \"Kadettão\"\n  \"year\"                 =&gt; 1998\n  \"id\"                   =&gt; 1\n  \"details_chassi\"       =&gt; 999\n  \"details_plate_number\" =&gt; \"XXX1234\"\n  \"details_location\"     =&gt; Dict(\"country\"=&gt;\"Brasil\", \"state\"=&gt;\"São Paulo\")\n\n\nWe can apply the flatten n consecutive times adding n to the end of the function call:\n\nflatten(d1, n = 2)\n\nDict{String, Any} with 7 entries:\n  \"details_location_country\" =&gt; \"Brasil\"\n  \"details_location_state\"   =&gt; \"São Paulo\"\n  \"model\"                    =&gt; \"Kadettão\"\n  \"year\"                     =&gt; 1998\n  \"details_chassi\"           =&gt; 999\n  \"details_plate_number\"     =&gt; \"XXX1234\"\n  \"id\"                       =&gt; 1\n\n\nConverting it to a dataframe is simple:\n\nflatten(d1, n = 1) |&gt; DataFrame\n\n1×6 DataFrame\n\n\n\nRow\ndetails_chassi\ndetails_location\ndetails_plate_number\nid\nmodel\nyear\n\n\n\nInt64\nDict…\nString\nInt64\nString\nInt64\n\n\n\n\n1\n999\nDict(\"country\"=&gt;\"Brasil\", \"state\"=&gt;\"São Paulo\")\nXXX1234\n1\nKadettão\n1998\n\n\n\n\n\n\nIn case of a vector of nested dictionaries, there is the flatten_dfr:\n\nd2 = Dict(\n    \"id\" =&gt; 2\n    ,\"model\" =&gt; \"Monzão\"\n    ,\"year\" =&gt; 1995\n    ,\"details\" =&gt; Dict(\n        \"plate_number\" =&gt; \"ZZZ1234\"\n        ,\"chassi\" =&gt; 1234\n        ,\"location\" =&gt; Dict(\n            \"country\" =&gt; \"Brasil\"\n            ,\"state\" =&gt; \"Amazonas\"\n            )\n        )\n        ,\"stolen\" =&gt; true\n    )\n\nds = [d1, d2]\n\nflatten_dfr(ds, n = 2)\n\n2×8 DataFrame\n\n\n\nRow\ndetails_chassi\ndetails_location_country\ndetails_location_state\ndetails_plate_number\nid\nmodel\nyear\nstolen\n\n\n\nInt64\nString\nString\nString\nInt64\nString\nInt64\nBool?\n\n\n\n\n1\n999\nBrasil\nSão Paulo\nXXX1234\n1\nKadettão\n1998\nmissing\n\n\n2\n1234\nBrasil\nAmazonas\nZZZ1234\n2\nMonzão\n1995\ntrue\n\n\n\n\n\n\nIf you want to convert the inner dictionaries/arrays to json (useful when saving to a relational database), use the function\n\nflatten_dfr_json(ds, n = 1)\n\n2×7 DataFrame\n\n\n\nRow\ndetails_chassi\ndetails_location\ndetails_plate_number\nid\nmodel\nyear\nstolen\n\n\n\nInt64\nString\nString\nInt64\nString\nInt64\nBool?\n\n\n\n\n1\n999\n{\"country\":\"Brasil\",\"state\":\"São Paulo\"}\nXXX1234\n1\nKadettão\n1998\nmissing\n\n\n2\n1234\n{\"country\":\"Brasil\",\"state\":\"Amazonas\"}\nZZZ1234\n2\nMonzão\n1995\ntrue\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nflatten_dict(key, value)\nTransform a pair key and value into a dictionary.\nflatten_dict(key, value:: Dict{&lt;:Any, &lt;:Any})\nGiven a key and a value which is a dictionary, concatenate the key string to every other key of the dictionary value. A dictionary of dictionaries will become only a dictionary of values.\nThus, we are “flattening” the inner dictionaries.\nflatten_dict(dict::Dict{&lt;:Any, &lt;:Any}, n = 1)\nRemove one layer of dictionaries of a dictionary.\n\n\n\n\n\n\n\n\n\nflatten_dfr(dicts::Vector{&lt;:Dict}, n::Int = 1)\nGiven a vector of dictionaries, flatten each of them and concatenate on a dataframe.\n\n\n\n\n\n\n\n\n\nflatten_dfr_json(dicts::Vector{&lt;:Dict}, n::Int = 1)\nGiven a vector of dictionaries, flatten each of them and concatenate on a dataframe; remaining vectors and dictionaries are converted to a json string.",
+    "text": "every\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nevery(x, p)\n\nDo every x_i in x satisfies p?",
     "crumbs": [
-      "Flatten"
+      "Reference",
+      "every"
     ]
   },
   {
-    "objectID": "flatten.html#dictionaries-and-inner-dictionaries",
-    "href": "flatten.html#dictionaries-and-inner-dictionaries",
-    "title": "Flatten",
+    "objectID": "reference/papply.html",
+    "href": "reference/papply.html",
+    "title": "papply",
     "section": "",
-    "text": "Consider the following nested dictionary describing a vehicle:\n\nusing TidierIteration\n\nd1 = Dict(\n    \"id\" =&gt; 1\n    ,\"model\" =&gt; \"Kadettão\"\n    ,\"year\" =&gt; 1998\n    ,\"details\" =&gt; Dict(\n        \"plate_number\" =&gt; \"XXX1234\"\n        ,\"chassi\" =&gt; 999\n        ,\"location\" =&gt; Dict(\n            \"country\" =&gt; \"Brasil\"\n            ,\"state\" =&gt; \"São Paulo\"\n            )\n        )\n    )\n\nDict{String, Any} with 4 entries:\n  \"details\" =&gt; Dict{String, Any}(\"plate_number\"=&gt;\"XXX1234\", \"location\"=&gt;Dict(\"c…\n  \"model\"   =&gt; \"Kadettão\"\n  \"year\"    =&gt; 1998\n  \"id\"      =&gt; 1\n\n\nWe can flat the inner dictionaries as follows:\n\nd1\nflatten(d1, n = 1)\n\nDict{String, Any} with 6 entries:\n  \"model\"                =&gt; \"Kadettão\"\n  \"year\"                 =&gt; 1998\n  \"id\"                   =&gt; 1\n  \"details_chassi\"       =&gt; 999\n  \"details_plate_number\" =&gt; \"XXX1234\"\n  \"details_location\"     =&gt; Dict(\"country\"=&gt;\"Brasil\", \"state\"=&gt;\"São Paulo\")\n\n\nWe can apply the flatten n consecutive times adding n to the end of the function call:\n\nflatten(d1, n = 2)\n\nDict{String, Any} with 7 entries:\n  \"details_location_country\" =&gt; \"Brasil\"\n  \"details_location_state\"   =&gt; \"São Paulo\"\n  \"model\"                    =&gt; \"Kadettão\"\n  \"year\"                     =&gt; 1998\n  \"details_chassi\"           =&gt; 999\n  \"details_plate_number\"     =&gt; \"XXX1234\"\n  \"id\"                       =&gt; 1\n\n\nConverting it to a dataframe is simple:\n\nflatten(d1, n = 1) |&gt; DataFrame\n\n1×6 DataFrame\n\n\n\nRow\ndetails_chassi\ndetails_location\ndetails_plate_number\nid\nmodel\nyear\n\n\n\nInt64\nDict…\nString\nInt64\nString\nInt64\n\n\n\n\n1\n999\nDict(\"country\"=&gt;\"Brasil\", \"state\"=&gt;\"São Paulo\")\nXXX1234\n1\nKadettão\n1998\n\n\n\n\n\n\nIn case of a vector of nested dictionaries, there is the flatten_dfr:\n\nd2 = Dict(\n    \"id\" =&gt; 2\n    ,\"model\" =&gt; \"Monzão\"\n    ,\"year\" =&gt; 1995\n    ,\"details\" =&gt; Dict(\n        \"plate_number\" =&gt; \"ZZZ1234\"\n        ,\"chassi\" =&gt; 1234\n        ,\"location\" =&gt; Dict(\n            \"country\" =&gt; \"Brasil\"\n            ,\"state\" =&gt; \"Amazonas\"\n            )\n        )\n        ,\"stolen\" =&gt; true\n    )\n\nds = [d1, d2]\n\nflatten_dfr(ds, n = 2)\n\n2×8 DataFrame\n\n\n\nRow\ndetails_chassi\ndetails_location_country\ndetails_location_state\ndetails_plate_number\nid\nmodel\nyear\nstolen\n\n\n\nInt64\nString\nString\nString\nInt64\nString\nInt64\nBool?\n\n\n\n\n1\n999\nBrasil\nSão Paulo\nXXX1234\n1\nKadettão\n1998\nmissing\n\n\n2\n1234\nBrasil\nAmazonas\nZZZ1234\n2\nMonzão\n1995\ntrue\n\n\n\n\n\n\nIf you want to convert the inner dictionaries/arrays to json (useful when saving to a relational database), use the function\n\nflatten_dfr_json(ds, n = 1)\n\n2×7 DataFrame\n\n\n\nRow\ndetails_chassi\ndetails_location\ndetails_plate_number\nid\nmodel\nyear\nstolen\n\n\n\nInt64\nString\nString\nInt64\nString\nInt64\nBool?\n\n\n\n\n1\n999\n{\"country\":\"Brasil\",\"state\":\"São Paulo\"}\nXXX1234\n1\nKadettão\n1998\nmissing\n\n\n2\n1234\n{\"country\":\"Brasil\",\"state\":\"Amazonas\"}\nZZZ1234\n2\nMonzão\n1995\ntrue",
+    "text": "docblock\n\n\n\n\n\n\npapply(x, f)\n\nApply the function f to each element of x. This is a generalization of apply2.\n\n\n\nx: an iterable collection.\nf: a function with as many variables as there are elements in x.",
     "crumbs": [
-      "Flatten"
+      "Reference",
+      "papply"
     ]
   },
   {
-    "objectID": "flatten.html#api",
-    "href": "flatten.html#api",
-    "title": "Flatten",
+    "objectID": "reference/papply.html#arguments",
+    "href": "reference/papply.html#arguments",
+    "title": "papply",
     "section": "",
-    "text": "flatten_dict(key, value)\nTransform a pair key and value into a dictionary.\nflatten_dict(key, value:: Dict{&lt;:Any, &lt;:Any})\nGiven a key and a value which is a dictionary, concatenate the key string to every other key of the dictionary value. A dictionary of dictionaries will become only a dictionary of values.\nThus, we are “flattening” the inner dictionaries.\nflatten_dict(dict::Dict{&lt;:Any, &lt;:Any}, n = 1)\nRemove one layer of dictionaries of a dictionary.\n\n\n\n\n\n\n\n\n\nflatten_dfr(dicts::Vector{&lt;:Dict}, n::Int = 1)\nGiven a vector of dictionaries, flatten each of them and concatenate on a dataframe.\n\n\n\n\n\n\n\n\n\nflatten_dfr_json(dicts::Vector{&lt;:Dict}, n::Int = 1)\nGiven a vector of dictionaries, flatten each of them and concatenate on a dataframe; remaining vectors and dictionaries are converted to a json string.",
+    "text": "x: an iterable collection.\nf: a function with as many variables as there are elements in x.",
     "crumbs": [
-      "Flatten"
+      "Reference",
+      "papply"
     ]
   },
   {
-    "objectID": "predicates.html",
-    "href": "predicates.html",
-    "title": "Predicates",
+    "objectID": "reference/apply_keys.html",
+    "href": "reference/apply_keys.html",
+    "title": "apply_keys",
     "section": "",
-    "text": "is_empty(x)\nCheck if a object has length 0.\n\n\n\n\n\n\n\n\n\nis_non_empty(x)\nCheck if a object has length greater than 0.\n\n\n\n\n\n\n\n\n\nevery(x, p)\nDo every x_i in x satisfies p?\n\n\n\n\n\n\n\n\n\nsome(x, p)\nDo some x_i in x satisfies p?\n\n\n\n\n\n\n\n\n\nnone(x, p)\nDo none x_i in x satisfies p?\n\n\n\n\n\n\n\n\n\ndetect_index(x, p)\nReturns the index for the first element of x where p is true.\n\n\n\n\n\n\n\n\n\ndetect(x, p)\nReturns the first element of x where p is true.\n\n\n\n\n\n\n\n\n\nhas_element(x, y)\nReturns true if y is an element of x.\n\n\n\n\n\n\n\n\n\nhas_key(d, k)\nReturns true if the dictionary d has key k.\n\n\n\n\n\n\n\n\n\nget_value(d, k, v = nothing)\nTry to get the value d[k], it it exists. Otherwise, return v.",
+    "text": "docblock\n\n\n\n\n\n\napply_keys(d::Dict, f)\n\nApply the function f to each key of d and return a dictionary with the same values of d.\n\n\n\nd: a dictionary.\nf: a function.",
     "crumbs": [
-      "Predicates"
+      "Reference",
+      "apply_keys"
     ]
   },
   {
-    "objectID": "predicates.html#api",
-    "href": "predicates.html#api",
-    "title": "Predicates",
+    "objectID": "reference/apply_keys.html#arguments",
+    "href": "reference/apply_keys.html#arguments",
+    "title": "apply_keys",
     "section": "",
-    "text": "is_empty(x)\nCheck if a object has length 0.\n\n\n\n\n\n\n\n\n\nis_non_empty(x)\nCheck if a object has length greater than 0.\n\n\n\n\n\n\n\n\n\nevery(x, p)\nDo every x_i in x satisfies p?\n\n\n\n\n\n\n\n\n\nsome(x, p)\nDo some x_i in x satisfies p?\n\n\n\n\n\n\n\n\n\nnone(x, p)\nDo none x_i in x satisfies p?\n\n\n\n\n\n\n\n\n\ndetect_index(x, p)\nReturns the index for the first element of x where p is true.\n\n\n\n\n\n\n\n\n\ndetect(x, p)\nReturns the first element of x where p is true.\n\n\n\n\n\n\n\n\n\nhas_element(x, y)\nReturns true if y is an element of x.\n\n\n\n\n\n\n\n\n\nhas_key(d, k)\nReturns true if the dictionary d has key k.\n\n\n\n\n\n\n\n\n\nget_value(d, k, v = nothing)\nTry to get the value d[k], it it exists. Otherwise, return v.",
+    "text": "d: a dictionary.\nf: a function.",
     "crumbs": [
-      "Predicates"
+      "Reference",
+      "apply_keys"
     ]
   },
   {
-    "objectID": "modify.html",
-    "href": "modify.html",
-    "title": "Modify",
+    "objectID": "reference/walk.html",
+    "href": "reference/walk.html",
+    "title": "walk",
     "section": "",
-    "text": "Functions to modify, filter and discard elements of a collection.\n\n\nmodify applies a function f to each element of x.\n\nusing TidierIteration;\n\nx = [1:4;]\nmodify!(x, x-&gt;x^2)\nx\n\n4-element Vector{Int64}:\n  1\n  4\n  9\n 16\n\n\nIt also work on dictionaries, keeping the keys intact:\n\nd = Dict(i =&gt; i for i in [1:4;])\nmodify(d, x-&gt;x^2)\n\nDict{Int64, Int64} with 4 entries:\n  4 =&gt; 16\n  2 =&gt; 4\n  3 =&gt; 9\n  1 =&gt; 1\n\n\nWe can also modify only when a function p is true:\n\ny = [1:6;]\nmodify_if(y, x-&gt;x^2, isodd)\n\n6-element Vector{Int64}:\n  1\n  2\n  9\n  4\n 25\n  6\n\n\n\n\n\nWe can discard some elements of x when a function p is false:\n\nusing TidierIteration;\n\nx = [1:4;]\nkeep(x, isodd)\n\n2-element Vector{Int64}:\n 1\n 3\n\n\nThis is the same as base Julia filter(p, x). It also work on dictionaries:\n\nd = Dict(i =&gt; i for i in [1:4;])\nkeep(x, isodd)\n\n2-element Vector{Int64}:\n 1\n 3\n\n\nIf we want to apply p to the keys of a dictionary, use\n\nd = Dict(i =&gt; i^2 for i in [1:4;])\nkeep_keys(d, isodd)\n\nDict{Int64, Int64} with 2 entries:\n  3 =&gt; 9\n  1 =&gt; 1\n\n\nThere is also the negation of keep: discard. It’s definition is trivial: discard(x, p) = keep(x, !p).\nWhen we want to throw away “length zero elements”, use compact:\n\nx = [1, [1, 2], nothing, [], \"\"]\ncompact(x)\n\n2-element Vector{Any}:\n 1\n  [1, 2]\n\n\n\n\n\n\n\n\n\n\n\nmodify(x, f)\nModify a copy of x applying f to each of its elements.\n\n\n\n\n\n\n\n\n\nmodify!(x, f)\nModify x applying f to each of its elements.\n\n\n\n\n\n\n\n\n\nmodify_if(x, f, p)\nModify a copy of x applying f to each of its elements where the function p is true.\n\n\n\n\n\n\n\n\n\nmodify_if!(x, f, p)\nModify x applying f to each of its elements where the function p is true.\n\n\n\n\n\n\n\n\n\nkeep(x, p)\nKeep the elements x_i of collection x such that p(x_i) is true.\n\n\n\n\n\n\n\n\n\nkeep!(x, p)\nKeep the elements x_i of collection x such that p(x_i) is true.\n\n\n\n\n\n\n\n\n\ndiscard(x, p)\nDiscard the elements x_i of collection x such that p(x_i) is true.\n\n\n\n\n\n\n\n\n\ndiscard!(x, p)\nDiscard the elements x_i of collection x such that p(x_i) is true.\n\n\n\n\n\n\n\n\n\ncompact(x)\nKeep the elements x_i of collection x such that is_non_empty(x_i) is true.\n\n\n\n\n\n\n\n\n\ncompact!(x)\nKeep the elements x_i of collection x such that is_non_empty(x_i) is true.",
+    "text": "walk\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nwalk(x, f)\n\nThe same as apply(x, f) but returns nothing.",
     "crumbs": [
-      "Modify"
+      "Reference",
+      "walk"
     ]
   },
   {
-    "objectID": "modify.html#modifying",
-    "href": "modify.html#modifying",
-    "title": "Modify",
+    "objectID": "reference/iapply.html",
+    "href": "reference/iapply.html",
+    "title": "iapply",
     "section": "",
-    "text": "modify applies a function f to each element of x.\n\nusing TidierIteration;\n\nx = [1:4;]\nmodify!(x, x-&gt;x^2)\nx\n\n4-element Vector{Int64}:\n  1\n  4\n  9\n 16\n\n\nIt also work on dictionaries, keeping the keys intact:\n\nd = Dict(i =&gt; i for i in [1:4;])\nmodify(d, x-&gt;x^2)\n\nDict{Int64, Int64} with 4 entries:\n  4 =&gt; 16\n  2 =&gt; 4\n  3 =&gt; 9\n  1 =&gt; 1\n\n\nWe can also modify only when a function p is true:\n\ny = [1:6;]\nmodify_if(y, x-&gt;x^2, isodd)\n\n6-element Vector{Int64}:\n  1\n  2\n  9\n  4\n 25\n  6",
+    "text": "docblock\n\n\n\n\n\n\niapply(x, f)\n\nApply the function f to each pair (i, x_i) for i in the index set of x.\n\n\n\nx: an iterable collection.\nf: a two-variable function.\n\n\n\n\n\n\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\niapply(d::Dict, f)\n\nApply the function f to each pair (k, d[k]) for k in the values-set of d.\n\n\n\nd: a dictionary.\nf: a two-variable function.",
     "crumbs": [
-      "Modify"
+      "Reference",
+      "iapply"
     ]
   },
   {
-    "objectID": "modify.html#filtering",
-    "href": "modify.html#filtering",
-    "title": "Modify",
+    "objectID": "reference/iapply.html#arguments",
+    "href": "reference/iapply.html#arguments",
+    "title": "iapply",
     "section": "",
-    "text": "We can discard some elements of x when a function p is false:\n\nusing TidierIteration;\n\nx = [1:4;]\nkeep(x, isodd)\n\n2-element Vector{Int64}:\n 1\n 3\n\n\nThis is the same as base Julia filter(p, x). It also work on dictionaries:\n\nd = Dict(i =&gt; i for i in [1:4;])\nkeep(x, isodd)\n\n2-element Vector{Int64}:\n 1\n 3\n\n\nIf we want to apply p to the keys of a dictionary, use\n\nd = Dict(i =&gt; i^2 for i in [1:4;])\nkeep_keys(d, isodd)\n\nDict{Int64, Int64} with 2 entries:\n  3 =&gt; 9\n  1 =&gt; 1\n\n\nThere is also the negation of keep: discard. It’s definition is trivial: discard(x, p) = keep(x, !p).\nWhen we want to throw away “length zero elements”, use compact:\n\nx = [1, [1, 2], nothing, [], \"\"]\ncompact(x)\n\n2-element Vector{Any}:\n 1\n  [1, 2]",
+    "text": "x: an iterable collection.\nf: a two-variable function.",
     "crumbs": [
-      "Modify"
+      "Reference",
+      "iapply"
     ]
   },
   {
-    "objectID": "modify.html#api",
-    "href": "modify.html#api",
-    "title": "Modify",
+    "objectID": "reference/iapply.html#arguments-1",
+    "href": "reference/iapply.html#arguments-1",
+    "title": "iapply",
     "section": "",
-    "text": "modify(x, f)\nModify a copy of x applying f to each of its elements.\n\n\n\n\n\n\n\n\n\nmodify!(x, f)\nModify x applying f to each of its elements.\n\n\n\n\n\n\n\n\n\nmodify_if(x, f, p)\nModify a copy of x applying f to each of its elements where the function p is true.\n\n\n\n\n\n\n\n\n\nmodify_if!(x, f, p)\nModify x applying f to each of its elements where the function p is true.\n\n\n\n\n\n\n\n\n\nkeep(x, p)\nKeep the elements x_i of collection x such that p(x_i) is true.\n\n\n\n\n\n\n\n\n\nkeep!(x, p)\nKeep the elements x_i of collection x such that p(x_i) is true.\n\n\n\n\n\n\n\n\n\ndiscard(x, p)\nDiscard the elements x_i of collection x such that p(x_i) is true.\n\n\n\n\n\n\n\n\n\ndiscard!(x, p)\nDiscard the elements x_i of collection x such that p(x_i) is true.\n\n\n\n\n\n\n\n\n\ncompact(x)\nKeep the elements x_i of collection x such that is_non_empty(x_i) is true.\n\n\n\n\n\n\n\n\n\ncompact!(x)\nKeep the elements x_i of collection x such that is_non_empty(x_i) is true.",
+    "text": "d: a dictionary.\nf: a two-variable function.",
     "crumbs": [
-      "Modify"
+      "Reference",
+      "iapply"
+    ]
+  },
+  {
+    "objectID": "reference/keep.html",
+    "href": "reference/keep.html",
+    "title": "keep",
+    "section": "",
+    "text": "keep\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nkeep(x, p)\n\nKeep the elements x_i of collection x such that p(x_i) is true.",
+    "crumbs": [
+      "Reference",
+      "keep"
+    ]
+  },
+  {
+    "objectID": "reference/apply2.html",
+    "href": "reference/apply2.html",
+    "title": "apply2",
+    "section": "",
+    "text": "docblock\n\n\n\n\n\n\napply2(x, y, f)\n\nApply the 2-variable function f to each element pair (x_i, y_i) where x_i (resp. y_i) is the i-th element of x (resp. y).\n\n\n\nx: an iterable collection.\ny: an iterable collection.\nf: a two-variable function.\n\n\n\n\n\n\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\napply2(d1::Dict, d2::Dict, f)\n\nThe same as Dict(k =&gt; f(d1[k], d2[k]) for k ∈ keys(d1) ∩ keys(d2)), that is: we apply f on (d1[k], d2[k]) for every k common key between d1 and d2.\n\n\n\nd1: a dictionary.\nd2: a dictionary.\nf: a two-variable function.",
+    "crumbs": [
+      "Reference",
+      "apply2"
+    ]
+  },
+  {
+    "objectID": "reference/apply2.html#arguments",
+    "href": "reference/apply2.html#arguments",
+    "title": "apply2",
+    "section": "",
+    "text": "x: an iterable collection.\ny: an iterable collection.\nf: a two-variable function.",
+    "crumbs": [
+      "Reference",
+      "apply2"
+    ]
+  },
+  {
+    "objectID": "reference/apply2.html#arguments-1",
+    "href": "reference/apply2.html#arguments-1",
+    "title": "apply2",
+    "section": "",
+    "text": "d1: a dictionary.\nd2: a dictionary.\nf: a two-variable function.",
+    "crumbs": [
+      "Reference",
+      "apply2"
+    ]
+  },
+  {
+    "objectID": "reference/flatten_dfr.html",
+    "href": "reference/flatten_dfr.html",
+    "title": "flatten_dfr",
+    "section": "",
+    "text": "flatten_dfr\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nflatten_dfr(dicts::Vector{&lt;:Dict}, n::Int = 1)\n\nGiven a vector of dictionaries, flatten each of them and concatenate on a dataframe.",
+    "crumbs": [
+      "Reference",
+      "flatten_dfr"
+    ]
+  },
+  {
+    "objectID": "reference/compact.html",
+    "href": "reference/compact.html",
+    "title": "compact",
+    "section": "",
+    "text": "compact\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\ncompact(x)\n\nKeep the elements x_i of collection x such that is_non_empty(x_i) is true.",
+    "crumbs": [
+      "Reference",
+      "compact"
+    ]
+  },
+  {
+    "objectID": "reference.html",
+    "href": "reference.html",
+    "title": "Reference",
+    "section": "",
+    "text": "Reference\nWrite your references here.",
+    "crumbs": [
+      "Reference"
+    ]
+  },
+  {
+    "objectID": "tutorials.html",
+    "href": "tutorials.html",
+    "title": "Tutorials",
+    "section": "",
+    "text": "Tutorials\nDescribe your tutorials here.",
+    "crumbs": [
+      "Tutorials"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial-01.html",
+    "href": "tutorials/tutorial-01.html",
+    "title": "First tutorial",
+    "section": "",
+    "text": "First tutorial\nThis is my first tutorial!",
+    "crumbs": [
+      "Tutorials",
+      "First tutorial"
+    ]
+  },
+  {
+    "objectID": "reference/modify_if!.html",
+    "href": "reference/modify_if!.html",
+    "title": "modify_if!",
+    "section": "",
+    "text": "modify_if!\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nmodify_if!(x, f, p)\n\nModify x applying f to each of its elements where the function p is true.",
+    "crumbs": [
+      "Reference",
+      "modify_if!"
+    ]
+  },
+  {
+    "objectID": "reference/is_empty.html",
+    "href": "reference/is_empty.html",
+    "title": "is_empty",
+    "section": "",
+    "text": "is_empty\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nis_empty(x)\n\nCheck if a object has length 0.",
+    "crumbs": [
+      "Reference",
+      "is_empty"
+    ]
+  },
+  {
+    "objectID": "reference/json_string.html",
+    "href": "reference/json_string.html",
+    "title": "json_string",
+    "section": "",
+    "text": "json_string\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\njson_string(x)\n\nConvert x to a JSON string.",
+    "crumbs": [
+      "Reference",
+      "json_string"
+    ]
+  },
+  {
+    "objectID": "reference/has_key.html",
+    "href": "reference/has_key.html",
+    "title": "has_key",
+    "section": "",
+    "text": "has_key\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nhas_key(d, k)\n\nReturns true if the dictionary d has key k.",
+    "crumbs": [
+      "Reference",
+      "has_key"
+    ]
+  },
+  {
+    "objectID": "reference/apply_dfr.html",
+    "href": "reference/apply_dfr.html",
+    "title": "apply_dfr",
+    "section": "",
+    "text": "docblock\n\n\n\n\n\n\napply_dfr(x, f)\n\nApply the function f to each element of x and bind all the rows into a dataframe.\n\n\n\nx: an iterable collection.\nf: a function that returns a DataFrame.",
+    "crumbs": [
+      "Reference",
+      "apply_dfr"
+    ]
+  },
+  {
+    "objectID": "reference/apply_dfr.html#arguments",
+    "href": "reference/apply_dfr.html#arguments",
+    "title": "apply_dfr",
+    "section": "",
+    "text": "x: an iterable collection.\nf: a function that returns a DataFrame.",
+    "crumbs": [
+      "Reference",
+      "apply_dfr"
+    ]
+  },
+  {
+    "objectID": "reference/flatten_dfr_json.html",
+    "href": "reference/flatten_dfr_json.html",
+    "title": "flatten_dfr_json",
+    "section": "",
+    "text": "flatten_dfr_json\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nflatten_dfr_json(dicts::Vector{&lt;:Dict}, n::Int = 1)\n\nGiven a vector of dictionaries, flatten each of them and concatenate on a dataframe; remaining vectors and dictionaries are converted to a json string.",
+    "crumbs": [
+      "Reference",
+      "flatten_dfr_json"
+    ]
+  },
+  {
+    "objectID": "reference/compose_n.html",
+    "href": "reference/compose_n.html",
+    "title": "compose_n",
+    "section": "",
+    "text": "compose_n\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\ncompose_n(f, n = 2)\n\nCompose the function f with itself n times.",
+    "crumbs": [
+      "Reference",
+      "compose_n"
+    ]
+  },
+  {
+    "objectID": "reference/walk2.html",
+    "href": "reference/walk2.html",
+    "title": "walk2",
+    "section": "",
+    "text": "walk2\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nwalk2(x, y, f)\n\nThe same as apply2(x, y, f) but returns nothing.",
+    "crumbs": [
+      "Reference",
+      "walk2"
+    ]
+  },
+  {
+    "objectID": "reference/flatten.html",
+    "href": "reference/flatten.html",
+    "title": "flatten",
+    "section": "",
+    "text": "flatten\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nflatten_dict(key, value)\n\nTransform a pair key and value into a dictionary.\n\n\n\n\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nflatten_dict(key, value:: Dict{&lt;:Any, &lt;:Any})\n\nGiven a key and a value which is a dictionary, concatenate the key string to every other key of the dictionary value. A dictionary of dictionaries will become only a dictionary of values.\nThus, we are “flattening” the inner dictionaries.\n\n\n\n\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nflatten_dict(dict::Dict{&lt;:Any, &lt;:Any}, n = 1)\n\nRemove one layer of dictionaries of a dictionary.",
+    "crumbs": [
+      "Reference",
+      "flatten"
+    ]
+  },
+  {
+    "objectID": "reference/apply.html",
+    "href": "reference/apply.html",
+    "title": "apply",
+    "section": "",
+    "text": "docblock\n\n\n\n\n\n\napply(x, f)\n\nApply the function f to each element of x and return an array.\n\n\n\nx: an iterable collection.\nf: a function.\n\n\n\n\n\n\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\napply(d::Dict, f)\n\nApply the function f to each value of d and return a dictionary with the same keys of d.\n\n\n\nd: a dictionary.\nf: a function.",
+    "crumbs": [
+      "Reference",
+      "apply"
+    ]
+  },
+  {
+    "objectID": "reference/apply.html#arguments",
+    "href": "reference/apply.html#arguments",
+    "title": "apply",
+    "section": "",
+    "text": "x: an iterable collection.\nf: a function.",
+    "crumbs": [
+      "Reference",
+      "apply"
+    ]
+  },
+  {
+    "objectID": "reference/apply.html#arguments-1",
+    "href": "reference/apply.html#arguments-1",
+    "title": "apply",
+    "section": "",
+    "text": "d: a dictionary.\nf: a function.",
+    "crumbs": [
+      "Reference",
+      "apply"
+    ]
+  },
+  {
+    "objectID": "reference/detect.html",
+    "href": "reference/detect.html",
+    "title": "detect",
+    "section": "",
+    "text": "detect\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\ndetect(x, p)\n\nReturns the first element of x where p is true.",
+    "crumbs": [
+      "Reference",
+      "detect"
+    ]
+  },
+  {
+    "objectID": "reference/pwalk.html",
+    "href": "reference/pwalk.html",
+    "title": "pwalk",
+    "section": "",
+    "text": "pwalk\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\npwalk(x, f)\n\nThe same as papply(x, f) but returns nothing.",
+    "crumbs": [
+      "Reference",
+      "pwalk"
+    ]
+  },
+  {
+    "objectID": "reference/has_element.html",
+    "href": "reference/has_element.html",
+    "title": "has_element",
+    "section": "",
+    "text": "has_element\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nhas_element(x, y)\n\nReturns true if y is an element of x.",
+    "crumbs": [
+      "Reference",
+      "has_element"
+    ]
+  },
+  {
+    "objectID": "reference/iwalk.html",
+    "href": "reference/iwalk.html",
+    "title": "iwalk",
+    "section": "",
+    "text": "iwalk\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\niwalk(x, f)\n\nThe same as iapply(x, f) but returns nothing.",
+    "crumbs": [
+      "Reference",
+      "iwalk"
+    ]
+  },
+  {
+    "objectID": "reference/possibly.html",
+    "href": "reference/possibly.html",
+    "title": "possibly",
+    "section": "",
+    "text": "possibly\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\npossibly(f, otherwise = nothing)\n\nCreate a modified version of the function f such that it returns otherwise when f(x) throws an error.",
+    "crumbs": [
+      "Reference",
+      "possibly"
+    ]
+  },
+  {
+    "objectID": "reference/get_value.html",
+    "href": "reference/get_value.html",
+    "title": "get_value",
+    "section": "",
+    "text": "get_value\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nget_value(d, k, v = nothing)\n\nTry to get the value d[k], it it exists. Otherwise, return v.",
+    "crumbs": [
+      "Reference",
+      "get_value"
+    ]
+  },
+  {
+    "objectID": "reference/negate.html",
+    "href": "reference/negate.html",
+    "title": "negate",
+    "section": "",
+    "text": "negate\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\nnegate(f)\n\nReturn a function which is the negation of f.",
+    "crumbs": [
+      "Reference",
+      "negate"
+    ]
+  },
+  {
+    "objectID": "reference/apply_dfc.html",
+    "href": "reference/apply_dfc.html",
+    "title": "apply_dfc",
+    "section": "",
+    "text": "docblock\n\n\n\n\n\n\napply_dfc(x, f)\n\nApply the function f to each element of x and bind all the columns into a dataframe.\n\n\n\nx: an iterable collection.\nf: a function that returns a DataFrame.",
+    "crumbs": [
+      "Reference",
+      "apply_dfc"
+    ]
+  },
+  {
+    "objectID": "reference/apply_dfc.html#arguments",
+    "href": "reference/apply_dfc.html#arguments",
+    "title": "apply_dfc",
+    "section": "",
+    "text": "x: an iterable collection.\nf: a function that returns a DataFrame.",
+    "crumbs": [
+      "Reference",
+      "apply_dfc"
+    ]
+  },
+  {
+    "objectID": "reference/compact!.html",
+    "href": "reference/compact!.html",
+    "title": "compact!",
+    "section": "",
+    "text": "compact!\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\ncompact!(x)\n\nKeep the elements x_i of collection x such that is_non_empty(x_i) is true.",
+    "crumbs": [
+      "Reference",
+      "compact!"
+    ]
+  },
+  {
+    "objectID": "reference/compose.html",
+    "href": "reference/compose.html",
+    "title": "compose",
+    "section": "",
+    "text": "compose\n\n\n\n\n\n\ndocblock\n\n\n\n\n\n\ncompose(args...)\n\nCreate the composite function of the args....\ncompose(f1, f2)(x) is equal to f2(f1(x)).",
+    "crumbs": [
+      "Reference",
+      "compose"
     ]
   }
 ]

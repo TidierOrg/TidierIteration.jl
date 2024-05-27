@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index</title>
+<title>discard</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,22 +57,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../reference/every.html" rel="next">
+<link href="../reference/discard.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,10 +104,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -118,15 +120,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">TidierIteration.jl</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./reference.html"> 
+    <a class="nav-link active" href="../reference.html" aria-current="page"> 
 <span class="menu-text">Reference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tutorials.html"> 
+    <a class="nav-link" href="../tutorials.html"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
 </ul>
@@ -135,34 +137,274 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/discard!.html">discard!</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reference</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/apply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">apply</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/apply_dfc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">apply_dfc</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/apply_dfr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">apply_dfr</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/apply_keys.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">apply_keys</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/apply2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">apply2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/compact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compact</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/compact!.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compact!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/compose.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compose</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/compose_n.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">compose_n</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/detect.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">detect</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/detect_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">detect_index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/discard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">discard</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/discard!.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">discard!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/every.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">every</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/flatten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">flatten</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/flatten_dfr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">flatten_dfr</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/flatten_dfr_json.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">flatten_dfr_json</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/get_value.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">get_value</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/has_element.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">has_element</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/has_key.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">has_key</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/iapply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">iapply</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/is_empty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">is_empty</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/is_non_empty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">is_non_empty</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/iwalk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">iwalk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/json_string.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">json_string</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/keep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">keep</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/keep!.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">keep!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/modify.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">modify</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/modify_if.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">modify_if</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/modify_if!.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">modify_if!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/modify!.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">modify!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/negate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">negate</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/none.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">none</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/papply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">papply</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/possibly.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">possibly</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/pwalk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pwalk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/some.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">some</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/walk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">walk</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/walk2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">walk2</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tidieriteration.jl" id="toc-tidieriteration.jl" class="nav-link active" data-scroll-target="#tidieriteration.jl">TidierIteration.jl</a>
-  <ul class="collapse">
-  <li><a href="#what-is-tidieriteration.jl" id="toc-what-is-tidieriteration.jl" class="nav-link" data-scroll-target="#what-is-tidieriteration.jl">What is TidierIteration.jl?</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#comparison-to-purrr" id="toc-comparison-to-purrr" class="nav-link" data-scroll-target="#comparison-to-purrr">Comparison to <code>purrr</code></a>
-  <ul class="collapse">
-  <li><a href="#base-julia-mapping" id="toc-base-julia-mapping" class="nav-link" data-scroll-target="#base-julia-mapping">Base Julia <code>map</code>ping</a></li>
-  <li><a href="#why-use-tidieriteration-then" id="toc-why-use-tidieriteration-then" class="nav-link" data-scroll-target="#why-use-tidieriteration-then">Why use <code>TidierIteration</code> then?</a></li>
-  </ul></li>
-  <li><a href="#complete-list-of-implemented-functions" id="toc-complete-list-of-implemented-functions" class="nav-link" data-scroll-target="#complete-list-of-implemented-functions">Complete list of implemented functions</a>
-  <ul class="collapse">
-  <li><a href="#apply" id="toc-apply" class="nav-link" data-scroll-target="#apply">Apply</a></li>
-  <li><a href="#modify" id="toc-modify" class="nav-link" data-scroll-target="#modify">Modify</a></li>
-  <li><a href="#predicates" id="toc-predicates" class="nav-link" data-scroll-target="#predicates">Predicates</a></li>
-  <li><a href="#adverbs" id="toc-adverbs" class="nav-link" data-scroll-target="#adverbs">Adverbs</a></li>
-  <li><a href="#flatten" id="toc-flatten" class="nav-link" data-scroll-target="#flatten">Flatten</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#sec-doc" id="toc-sec-doc" class="nav-link active" data-scroll-target="#sec-doc">discard!</a></li>
   </ul>
 </nav>
     </div>
@@ -172,76 +414,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="tidieriteration.jl" class="level1">
-<h1>TidierIteration.jl</h1>
-<p><a href="https://github.com/TidierOrg/TidierIteration.jl/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" class="img-fluid" alt="License: MIT"></a> <a href="https://tidierorg.github.io/TidierIteration.jl/"><img src="https://img.shields.io/badge/Docs-Latest-blue.svg" class="img-fluid" alt="Docs: Latest"></a> <a href="http://juliapkgstats.com/pkg/TidierIteration"><img src="https://img.shields.io/badge/dynamic/json?url=http%3A%2F%2Fjuliapkgstats.com%2Fapi%2Fv1%2Fmonthly_downloads%2FTidierIteration&amp;query=total_requests&amp;suffix=%2Fmonth&amp;label=Downloads" class="img-fluid" alt="Downloads"></a></p>
-<p><img src="assets/logo.png" align="right" style="padding-left:10px;" width="150"></p>
-<section id="what-is-tidieriteration.jl" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-tidieriteration.jl">What is TidierIteration.jl?</h2>
-<p>TidierIteration.jl is a 100% Julia implementation of the <code>purrr</code> R package. It aims to ease the different ways to <code>map</code> (or <code>apply</code>) functions to Julia objects: arrays, dicts and so on. It also provides some tools of functional programming: adverbs, composition, safe-functions and more.</p>
-</section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>For the stable version:</p>
-<pre><code>] add https://github.com/TidierOrg/TidierIteration</code></pre>
-<p>The <code>]</code> character starts the Julia <a href="https://docs.julialang.org/en/v1/stdlib/Pkg/">package manager</a>. Press the backspace key to return to the Julia prompt.</p>
-<p>or</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(url<span class="op">=</span><span class="st">"https://github.com/TidierOrg/TidierIteration"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="comparison-to-purrr" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-to-purrr">Comparison to <code>purrr</code></h2>
-<p>In R <a href="https://purrr.tidyverse.org/"><code>purrr</code> package</a>, there are many ways to apply a function to each element of a set: the many <code>map_</code> variants (<code>map_lgl</code> returns a vector of logicals, <code>map_chr</code> returns a vector of strings/characters, etc) and so on exist because the <code>map</code> function returns a <code>list</code> in R, which is a wild beast (R lists allow any kind of elements, and few functions are optimized (i.e.&nbsp;vectorized) on them as opposed to vectors). In comparison, R vectors are always of just one type (integers, booleans, etc.)</p>
-<p>In Julia, arrays are already the most general structure in the sense that they can contain any kind of element. Arrays of just one type (say, integers) are still arrays. We don’t need the <code>_lgl</code> and <code>_chr</code> variants.</p>
-<p>Besides that, the name <code>map</code> is already taken in Julia and its arguments are fatally in the opposite order of the purrr <code>map</code>! Because of that, I decided to implement the <code>apply</code> function, which takes an iterable object <code>x</code> as the first argument and a function <code>f</code> as the second. So <code>apply(x, f)</code> means that for each element of <code>x</code> I want to apply the function <code>f</code> and return an array.</p>
-<p>So, instead of defining a function like <code>map_int</code> in Julia, you can just type</p>
-<pre><code>apply(x, Int ∘ f)</code></pre>
-<p>or, even better, let <code>f</code> return an integer.</p>
-<section id="base-julia-mapping" class="level3">
-<h3 class="anchored" data-anchor-id="base-julia-mapping">Base Julia <code>map</code>ping</h3>
-<p>In Julia we already have 3 ways to apply a function to each element of an array <code>x</code>, and they are very elegant ones:</p>
-<pre><code>map(f, x)</code></pre>
-<p>or</p>
-<pre><code>[f(xi) for xi ∈ x]</code></pre>
-<p>or the one I prefer:</p>
-<pre><code>f.(x)</code></pre>
-</section>
-<section id="why-use-tidieriteration-then" class="level3">
-<h3 class="anchored" data-anchor-id="why-use-tidieriteration-then">Why use <code>TidierIteration</code> then?</h3>
-<ul>
-<li><p>The object <code>x</code> is always the first element of the <code>apply</code> family, so it’s easy to pipe them;</p></li>
-<li><p>We extend the <code>apply</code> family to Julia objects which are not <code>map</code>ped by default, like dictionaries;</p></li>
-<li><p>We also provide the <code>apply2</code>, <code>iapply</code> and <code>papply</code> methods to <code>map</code> over 2 or n elements at the same time;</p></li>
-<li><p>We provide the <code>flatten_*</code> functions to tidy wild dictionaries (like JSON responses from APIs) and many adverbs.</p></li>
-</ul>
-</section>
-</section>
-<section id="complete-list-of-implemented-functions" class="level2">
-<h2 class="anchored" data-anchor-id="complete-list-of-implemented-functions">Complete list of implemented functions</h2>
-<p>See the <a href="https://tidierorg.github.io/TidierIteration.jl/dev/">documentation</a> for examples.</p>
-<section id="apply" class="level3">
-<h3 class="anchored" data-anchor-id="apply">Apply</h3>
-<p>apply, apply_keys, apply_dfc, apply_dfr, walk, apply2, walk2, iapply, iwalk, papply, pwalk;</p>
-</section>
-<section id="modify" class="level3">
-<h3 class="anchored" data-anchor-id="modify">Modify</h3>
-<p>modify, modify!, modify_if, modify_if!, keep, keep!, keep_keys, discard, discard!, compact, compact!;</p>
-</section>
-<section id="predicates" class="level3">
-<h3 class="anchored" data-anchor-id="predicates">Predicates</h3>
-<p>is_empty, is_non_empty, every, some, none, detect_index, detect, has_element, has_key, get_value;</p>
-</section>
-<section id="adverbs" class="level3">
-<h3 class="anchored" data-anchor-id="adverbs">Adverbs</h3>
-<p>compose, compose_n, negate, possibly;</p>
-</section>
-<section id="flatten" class="level3">
-<h3 class="anchored" data-anchor-id="flatten">Flatten</h3>
-<p>flatten, flatten_n, flatten_dfr, flatten_json, flatten_dfr_json, json_string, to_json;</p>
+<section id="sec-doc" class="level1">
+<h1>discard!</h1>
+<div class="callout callout-style-simple callout-note callout-titled" title="docblock">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+docblock
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="2" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">discard!</span>(x, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Discard the elements <code>x_i</code> of collection <code>x</code> such that <code>p(x_i)</code> is true.</p>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -669,6 +864,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="dark">
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../reference/discard.html" class="pagination-link" aria-label="discard">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">discard</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../reference/every.html" class="pagination-link" aria-label="every">
+        <span class="nav-page-text">every</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
