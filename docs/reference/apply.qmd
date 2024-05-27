@@ -1,0 +1,47 @@
+---
+engine: julia
+---
+
+# apply {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+apply(x, f)
+
+```
+
+Apply the function `f` to each element of `x` and return  an array. 
+ 
+## Arguments
+  * `x`: an iterable collection.
+  * `f`: a function.
+
+
+:::
+    
+
+ --- 
+ 
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+apply(d::Dict, f)
+
+```
+
+Apply the function `f` to each value of `d` and return  a dictionary with the same keys of `d`. 
+ 
+## Arguments
+  * `d`: a dictionary.
+  * `f`: a function.
+
+
+:::
+    
+

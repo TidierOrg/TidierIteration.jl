@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# every {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+every(x, p)
+
+```
+
+Do every `x_i` in `x` satisfies `p`?
+ 
+
+
+:::
+    
+

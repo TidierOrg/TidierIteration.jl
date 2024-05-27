@@ -1,0 +1,26 @@
+---
+engine: julia
+---
+
+# apply_dfc {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+apply_dfc(x, f)
+
+```
+
+Apply the function `f` to each element of `x` and  bind all the columns into a dataframe.
+ 
+## Arguments
+  * `x`: an iterable collection.
+  * `f`: a function that returns a DataFrame.
+
+
+:::
+    
+

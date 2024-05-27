@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# compose_n {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+compose_n(f, n = 2)
+
+```
+
+Compose the function `f` with itself `n` times.
+ 
+
+
+:::
+    
+

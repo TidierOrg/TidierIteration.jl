@@ -1,0 +1,26 @@
+---
+engine: julia
+---
+
+# apply_dfr {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+apply_dfr(x, f)
+
+```
+
+Apply the function `f` to each element of `x` and  bind all the rows into a dataframe.
+ 
+## Arguments
+  * `x`: an iterable collection.
+  * `f`: a function that returns a DataFrame.
+
+
+:::
+    
+

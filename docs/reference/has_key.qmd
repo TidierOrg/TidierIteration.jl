@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# has_key {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+has_key(d, k)
+
+```
+
+Returns `true` if the dictionary `d` has key `k`.
+ 
+
+
+:::
+    
+

@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# json_string {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+json_string(x)
+
+```
+
+Convert `x` to a JSON string.
+ 
+
+
+:::
+    
+

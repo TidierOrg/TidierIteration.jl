@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# negate {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+negate(f)
+
+```
+
+Return a function which is the negation of `f`.
+ 
+
+
+:::
+    
+

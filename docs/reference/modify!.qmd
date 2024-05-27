@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# modify! {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+modify!(x, f)
+
+```
+
+Modify `x` applying `f` to each of its elements.
+ 
+
+
+:::
+    
+

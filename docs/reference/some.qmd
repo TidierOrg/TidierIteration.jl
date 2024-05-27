@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# some {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+some(x, p)
+
+```
+
+Do some `x_i` in `x` satisfies `p`?
+ 
+
+
+:::
+    
+

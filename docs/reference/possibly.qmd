@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# possibly {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+possibly(f, otherwise = nothing)
+
+```
+
+Create a modified version of the function `f` such that it returns `otherwise` when `f(x)` throws an error.
+ 
+
+
+:::
+    
+

@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# discard! {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+discard!(x, p)
+
+```
+
+Discard the elements `x_i` of collection `x` such that `p(x_i)` is true.
+ 
+
+
+:::
+    
+

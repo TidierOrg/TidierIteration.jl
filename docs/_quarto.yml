@@ -1,0 +1,70 @@
+
+project:
+  type: website
+  output-dir: site
+execute:
+  freeze: true
+  cache: true
+  warning: false
+website:
+  # title: "TidierIteration.jl"
+  page-navigation: true
+  bread-crumbs: true
+
+  search:
+    show-item-context: true
+    type: overlay
+
+  navbar:
+    background: primary
+
+    left:
+      - text: "TidierIteration.jl"
+        href: index.qmd
+      - text: "Reference"
+        href: reference.qmd
+      - text: "Tutorials"
+        href: tutorials.qmd
+        
+    tools:
+    - icon: github
+      href: https://github.com/TidierOrg/TidierIteration.jl
+      text: TidierIteration.jl
+
+  sidebar:
+    - title: "Reference"
+      style: "docked"
+      background: light
+      contents: 
+        - reference.qmd
+        - auto: "reference/*"
+
+    - title: "Tutorials"
+      style: "docked"
+      background: light
+      contents:
+        - tutorials.qmd
+        - auto: "tutorials/*"
+        
+
+  comments:
+    giscus:
+      repo: TidierOrg/TidierIteration.jl
+      reactions-enabled: true
+      loading: lazy
+      mapping: pathname
+
+  page-footer: "Website generated with [Quarto](https://quarto.org/) and [QuartoDocBuilder.jl](https://github.com/vituri/QuartoDocBuilder.jl)"
+
+engine: julia
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    code-copy: true
+    code-overflow: wrap
+    preview-links: true
+    toc: true
+    toc-depth: 3
+    toc-expand: true 

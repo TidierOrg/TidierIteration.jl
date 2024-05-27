@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# none {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+none(x, p)
+
+```
+
+Do none `x_i` in `x` satisfies `p`?
+ 
+
+
+:::
+    
+

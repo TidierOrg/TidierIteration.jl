@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# compact! {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+compact!(x)
+
+```
+
+Keep the elements `x_i` of collection `x` such that `is_non_empty(x_i)` is `true`.
+ 
+
+
+:::
+    
+

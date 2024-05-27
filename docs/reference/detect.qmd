@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# detect {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+detect(x, p)
+
+```
+
+Returns the first element of  `x` where `p` is true.
+ 
+
+
+:::
+    
+

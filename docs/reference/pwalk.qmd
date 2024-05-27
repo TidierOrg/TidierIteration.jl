@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# pwalk {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+pwalk(x, f)
+
+```
+
+The same as `papply(x, f)` but returns nothing.
+ 
+
+
+:::
+    
+

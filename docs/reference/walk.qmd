@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# walk {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+walk(x, f)
+
+```
+
+The same as `apply(x, f)` but returns nothing.
+ 
+
+
+:::
+    
+

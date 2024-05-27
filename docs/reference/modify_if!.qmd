@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# modify_if! {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+modify_if!(x, f, p)
+
+```
+
+Modify `x` applying `f` to each of its elements where the function `p` is `true`.
+ 
+
+
+:::
+    
+

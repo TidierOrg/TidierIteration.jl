@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# walk2 {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+walk2(x, y, f)
+
+```
+
+The same as `apply2(x, y, f)` but returns nothing.
+ 
+
+
+:::
+    
+

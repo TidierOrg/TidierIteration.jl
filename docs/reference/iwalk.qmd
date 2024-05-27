@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# iwalk {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+iwalk(x, f)
+
+```
+
+The same as `iapply(x, f)` but returns nothing.
+ 
+
+
+:::
+    
+

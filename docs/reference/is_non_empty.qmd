@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# is_non_empty {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+is_non_empty(x)
+
+```
+
+Check if a object has length greater than 0.
+ 
+
+
+:::
+    
+

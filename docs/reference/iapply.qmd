@@ -1,0 +1,47 @@
+---
+engine: julia
+---
+
+# iapply {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+iapply(x, f)
+
+```
+
+Apply the function `f` to each pair `(i, x_i)` for `i` in the index set of `x`.
+ 
+## Arguments
+  * `x`: an iterable collection.
+  * `f`: a two-variable function.
+
+
+:::
+    
+
+ --- 
+ 
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+iapply(d::Dict, f)
+
+```
+
+Apply the function `f` to each pair `(k, d[k])` for `k` in the values-set of `d`.
+ 
+## Arguments
+  * `d`: a dictionary.
+  * `f`: a two-variable function.
+
+
+:::
+    
+

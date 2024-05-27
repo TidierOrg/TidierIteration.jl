@@ -1,0 +1,403 @@
+---
+engine: julia
+---
+
+# Reference
+  
+
+[apply(x, f)](reference/apply.qmd)
+
+> Apply the function `f` to each element of `x` and return  an array. 
+ 
+
+
+---
+
+          
+[apply(d::Dict, f)](reference/apply.qmd)
+
+> Apply the function `f` to each value of `d` and return  a dictionary with the same keys of `d`. 
+ 
+
+
+---
+
+          
+[apply_dfc(x, f)](reference/apply_dfc.qmd)
+
+> Apply the function `f` to each element of `x` and  bind all the columns into a dataframe.
+ 
+
+
+---
+
+          
+[walk2(x, y, f)](reference/walk2.qmd)
+
+> The same as `apply2(x, y, f)` but returns nothing.
+ 
+
+
+---
+
+          
+[discard(x, p)](reference/discard.qmd)
+
+> Discard the elements `x_i` of collection `x` such that `p(x_i)` is true.
+ 
+
+
+---
+
+          
+[keep(x, p)](reference/keep.qmd)
+
+> Keep the elements `x_i` of collection `x` such that `p(x_i)` is true.
+ 
+
+
+---
+
+          
+[has_element(x, y)](reference/has_element.qmd)
+
+> Returns `true` if `y` is an element of `x`.
+ 
+
+
+---
+
+          
+[negate(f)](reference/negate.qmd)
+
+> Return a function which is the negation of `f`.
+ 
+
+
+---
+
+          
+[flatten_dfr_json(dicts::Vector{<:Dict}, n::Int = 1)](reference/flatten_dfr_json.qmd)
+
+> Given a vector of dictionaries, flatten each of them and concatenate on a dataframe; remaining vectors and dictionaries are converted to a json string.
+ 
+
+
+---
+
+          
+[is_non_empty(x)](reference/is_non_empty.qmd)
+
+> Check if a object has length greater than 0.
+ 
+
+
+---
+
+          
+[compact(x)](reference/compact.qmd)
+
+> Keep the elements `x_i` of collection `x` such that `is_non_empty(x_i)` is `true`.
+ 
+
+
+---
+
+          
+[discard!(x, p)](reference/discard!.qmd)
+
+> Discard the elements `x_i` of collection `x` such that `p(x_i)` is true.
+ 
+
+
+---
+
+          
+[apply_dfr(x, f)](reference/apply_dfr.qmd)
+
+> Apply the function `f` to each element of `x` and  bind all the rows into a dataframe.
+ 
+
+
+---
+
+          
+[modify_if!(x, f, p)](reference/modify_if!.qmd)
+
+> Modify `x` applying `f` to each of its elements where the function `p` is `true`.
+ 
+
+
+---
+
+          
+[flatten_dfr(dicts::Vector{<:Dict}, n::Int = 1)](reference/flatten_dfr.qmd)
+
+> Given a vector of dictionaries, flatten each of them and concatenate on a dataframe.
+ 
+
+
+---
+
+          
+[json_string(x)](reference/json_string.qmd)
+
+> Convert `x` to a JSON string.
+ 
+
+
+---
+
+          
+[compact!(x)](reference/compact!.qmd)
+
+> Keep the elements `x_i` of collection `x` such that `is_non_empty(x_i)` is `true`.
+ 
+
+
+---
+
+          
+[pwalk(x, f)](reference/pwalk.qmd)
+
+> The same as `papply(x, f)` but returns nothing.
+ 
+
+
+---
+
+          
+[detect_index(x, p)](reference/detect_index.qmd)
+
+> Returns the index for the first element of  `x` where `p` is true.
+ 
+
+
+---
+
+          
+[some(x, p)](reference/some.qmd)
+
+> Do some `x_i` in `x` satisfies `p`?
+ 
+
+
+---
+
+          
+[apply_keys(d::Dict, f)](reference/apply_keys.qmd)
+
+> Apply the function `f` to each key of `d` and return  a dictionary with the same values of `d`. 
+ 
+
+
+---
+
+          
+[iapply(x, f)](reference/iapply.qmd)
+
+> Apply the function `f` to each pair `(i, x_i)` for `i` in the index set of `x`.
+ 
+
+
+---
+
+          
+[iapply(d::Dict, f)](reference/iapply.qmd)
+
+> Apply the function `f` to each pair `(k, d[k])` for `k` in the values-set of `d`.
+ 
+
+
+---
+
+          
+[apply2(x, y, f)](reference/apply2.qmd)
+
+> Apply the 2-variable function `f` to each element pair `(x_i, y_i)` where `x_i` (resp. `y_i`) is the i-th element of `x` (resp. `y`).
+ 
+
+
+---
+
+          
+[apply2(d1::Dict, d2::Dict, f)](reference/apply2.qmd)
+
+> The same as `Dict(k => f(d1[k], d2[k]) for k ∈ keys(d1) ∩ keys(d2))`, that is: we apply `f` on `(d1[k], d2[k])` for every `k` common key between `d1` and `d2`.
+ 
+
+
+---
+
+          
+[modify!(x, f)](reference/modify!.qmd)
+
+> Modify `x` applying `f` to each of its elements.
+ 
+
+
+---
+
+          
+[is_empty(x)](reference/is_empty.qmd)
+
+> Check if a object has length 0.
+ 
+
+
+---
+
+          
+[detect(x, p)](reference/detect.qmd)
+
+> Returns the first element of  `x` where `p` is true.
+ 
+
+
+---
+
+          
+[walk(x, f)](reference/walk.qmd)
+
+> The same as `apply(x, f)` but returns nothing.
+ 
+
+
+---
+
+          
+[iwalk(x, f)](reference/iwalk.qmd)
+
+> The same as `iapply(x, f)` but returns nothing.
+ 
+
+
+---
+
+          
+[keep!(x, p)](reference/keep!.qmd)
+
+> Keep the elements `x_i` of collection `x` such that `p(x_i)` is true.
+ 
+
+
+---
+
+          
+[none(x, p)](reference/none.qmd)
+
+> Do none `x_i` in `x` satisfies `p`?
+ 
+
+
+---
+
+          
+[has_key(d, k)](reference/has_key.qmd)
+
+> Returns `true` if the dictionary `d` has key `k`.
+ 
+
+
+---
+
+          
+[flatten_dict(key, value)](reference/flatten_dict.qmd)
+
+> Transform a pair `key` and `value` into a dictionary.
+ 
+
+
+---
+
+          
+[flatten_dict(key, value:: Dict{<:Any, <:Any})](reference/flatten_dict.qmd)
+
+> Given a `key` and a `value` which is a dictionary, concatenate the `key` string to every other key of the  dictionary `value`. A dictionary of dictionaries will become only a dictionary of values.
+ 
+
+
+---
+
+          
+[flatten_dict(dict::Dict{<:Any, <:Any}, n = 1)](reference/flatten_dict.qmd)
+
+> Remove one layer of dictionaries of a dictionary.
+ 
+
+
+---
+
+          
+[possibly(f, otherwise = nothing)](reference/possibly.qmd)
+
+> Create a modified version of the function `f` such that it returns `otherwise` when `f(x)` throws an error.
+ 
+
+
+---
+
+          
+[modify(x, f)](reference/modify.qmd)
+
+> Modify a copy of `x` applying `f` to each of its elements.
+ 
+
+
+---
+
+          
+[compose(args...)](reference/compose.qmd)
+
+> Create the composite function of the `args...`.
+ 
+
+
+---
+
+          
+[get_value(d, k, v = nothing)](reference/get_value.qmd)
+
+> Try to get the value `d[k]`, it it exists. Otherwise, return `v`.
+ 
+
+
+---
+
+          
+[papply(x, f)](reference/papply.qmd)
+
+> Apply the function `f` to each element of `x`. This is a generalization of `apply2`.
+ 
+
+
+---
+
+          
+[compose_n(f, n = 2)](reference/compose_n.qmd)
+
+> Compose the function `f` with itself `n` times.
+ 
+
+
+---
+
+          
+[every(x, p)](reference/every.qmd)
+
+> Do every `x_i` in `x` satisfies `p`?
+ 
+
+
+---
+
+          
+[modify_if(x, f, p)](reference/modify_if.qmd)
+
+> Modify a copy of `x` applying `f` to each of its elements where the function `p` is `true`.
+ 
+
+
+---
+
+          

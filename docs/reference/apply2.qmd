@@ -1,0 +1,49 @@
+---
+engine: julia
+---
+
+# apply2 {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+apply2(x, y, f)
+
+```
+
+Apply the 2-variable function `f` to each element pair `(x_i, y_i)` where `x_i` (resp. `y_i`) is the i-th element of `x` (resp. `y`).
+ 
+## Arguments
+  * `x`: an iterable collection.
+  * `y`: an iterable collection.
+  * `f`: a two-variable function.
+
+
+:::
+    
+
+ --- 
+ 
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+apply2(d1::Dict, d2::Dict, f)
+
+```
+
+The same as `Dict(k => f(d1[k], d2[k]) for k ∈ keys(d1) ∩ keys(d2))`, that is: we apply `f` on `(d1[k], d2[k])` for every `k` common key between `d1` and `d2`.
+ 
+## Arguments
+  * `d1`: a dictionary.
+  * `d2`: a dictionary.
+  * `f`: a two-variable function.
+
+
+:::
+    
+

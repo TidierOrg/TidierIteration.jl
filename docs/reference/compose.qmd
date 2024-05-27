@@ -1,0 +1,25 @@
+---
+engine: julia
+---
+
+# compose {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+compose(args...)
+
+```
+
+Create the composite function of the `args...`.
+ 
+`compose(f1, f2)(x)` is equal to `f2(f1(x))`.
+ 
+
+
+:::
+    
+

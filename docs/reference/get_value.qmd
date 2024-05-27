@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# get_value {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+get_value(d, k, v = nothing)
+
+```
+
+Try to get the value `d[k]`, it it exists. Otherwise, return `v`.
+ 
+
+
+:::
+    
+

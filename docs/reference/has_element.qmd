@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# has_element {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+has_element(x, y)
+
+```
+
+Returns `true` if `y` is an element of `x`.
+ 
+
+
+:::
+    
+

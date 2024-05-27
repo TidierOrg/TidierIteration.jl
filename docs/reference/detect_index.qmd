@@ -1,0 +1,23 @@
+---
+engine: julia
+---
+
+# detect_index {#sec-doc}
+    
+
+::: {.callout-note appearance="simple" title="docblock" collapse=false}    
+
+
+```{julia}
+#| eval: false
+detect_index(x, p)
+
+```
+
+Returns the index for the first element of  `x` where `p` is true.
+ 
+
+
+:::
+    
+
