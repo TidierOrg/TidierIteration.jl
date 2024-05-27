@@ -381,7 +381,226 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="reference" class="level1">
 <h1>Reference</h1>
-<p>Write your references here.</p>
+<p><a href="./reference/apply.html">apply(x, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the function <code>f</code> to each element of <code>x</code> and return an array.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/apply.html">apply(d::Dict, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the function <code>f</code> to each value of <code>d</code> and return a dictionary with the same keys of <code>d</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/apply_dfc.html">apply_dfc(x, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the function <code>f</code> to each element of <code>x</code> and bind all the columns into a dataframe.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/walk2.html">walk2(x, y, f)</a></p>
+<blockquote class="blockquote">
+<p>The same as <code>apply2(x, y, f)</code> but returns nothing.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/discard.html">discard(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Discard the elements <code>x_i</code> of collection <code>x</code> such that <code>p(x_i)</code> is true.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/keep.html">keep(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Keep the elements <code>x_i</code> of collection <code>x</code> such that <code>p(x_i)</code> is true.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/has_element.html">has_element(x, y)</a></p>
+<blockquote class="blockquote">
+<p>Returns <code>true</code> if <code>y</code> is an element of <code>x</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/negate.html">negate(f)</a></p>
+<blockquote class="blockquote">
+<p>Return a function which is the negation of <code>f</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/flatten_dfr_json.html">flatten_dfr_json(dicts::Vector{&lt;:Dict}, n::Int = 1)</a></p>
+<blockquote class="blockquote">
+<p>Given a vector of dictionaries, flatten each of them and concatenate on a dataframe; remaining vectors and dictionaries are converted to a json string.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/is_non_empty.html">is_non_empty(x)</a></p>
+<blockquote class="blockquote">
+<p>Check if a object has length greater than 0.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/compact.html">compact(x)</a></p>
+<blockquote class="blockquote">
+<p>Keep the elements <code>x_i</code> of collection <code>x</code> such that <code>is_non_empty(x_i)</code> is <code>true</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/discard!.html">discard!(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Discard the elements <code>x_i</code> of collection <code>x</code> such that <code>p(x_i)</code> is true.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/apply_dfr.html">apply_dfr(x, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the function <code>f</code> to each element of <code>x</code> and bind all the rows into a dataframe.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/modify_if!.html">modify_if!(x, f, p)</a></p>
+<blockquote class="blockquote">
+<p>Modify <code>x</code> applying <code>f</code> to each of its elements where the function <code>p</code> is <code>true</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/flatten_dfr.html">flatten_dfr(dicts::Vector{&lt;:Dict}, n::Int = 1)</a></p>
+<blockquote class="blockquote">
+<p>Given a vector of dictionaries, flatten each of them and concatenate on a dataframe.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/json_string.html">json_string(x)</a></p>
+<blockquote class="blockquote">
+<p>Convert <code>x</code> to a JSON string.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/compact!.html">compact!(x)</a></p>
+<blockquote class="blockquote">
+<p>Keep the elements <code>x_i</code> of collection <code>x</code> such that <code>is_non_empty(x_i)</code> is <code>true</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/pwalk.html">pwalk(x, f)</a></p>
+<blockquote class="blockquote">
+<p>The same as <code>papply(x, f)</code> but returns nothing.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/detect_index.html">detect_index(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Returns the index for the first element of <code>x</code> where <code>p</code> is true.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/some.html">some(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Do some <code>x_i</code> in <code>x</code> satisfies <code>p</code>?</p>
+</blockquote>
+<hr>
+<p><a href="./reference/apply_keys.html">apply_keys(d::Dict, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the function <code>f</code> to each key of <code>d</code> and return a dictionary with the same values of <code>d</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/iapply.html">iapply(x, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the function <code>f</code> to each pair <code>(i, x_i)</code> for <code>i</code> in the index set of <code>x</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/iapply.html">iapply(d::Dict, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the function <code>f</code> to each pair <code>(k, d[k])</code> for <code>k</code> in the values-set of <code>d</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/apply2.html">apply2(x, y, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the 2-variable function <code>f</code> to each element pair <code>(x_i, y_i)</code> where <code>x_i</code> (resp. <code>y_i</code>) is the i-th element of <code>x</code> (resp. <code>y</code>).</p>
+</blockquote>
+<hr>
+<p><a href="./reference/apply2.html">apply2(d1::Dict, d2::Dict, f)</a></p>
+<blockquote class="blockquote">
+<p>The same as <code>Dict(k =&gt; f(d1[k], d2[k]) for k ∈ keys(d1) ∩ keys(d2))</code>, that is: we apply <code>f</code> on <code>(d1[k], d2[k])</code> for every <code>k</code> common key between <code>d1</code> and <code>d2</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/modify!.html">modify!(x, f)</a></p>
+<blockquote class="blockquote">
+<p>Modify <code>x</code> applying <code>f</code> to each of its elements.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/is_empty.html">is_empty(x)</a></p>
+<blockquote class="blockquote">
+<p>Check if a object has length 0.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/detect.html">detect(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Returns the first element of <code>x</code> where <code>p</code> is true.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/walk.html">walk(x, f)</a></p>
+<blockquote class="blockquote">
+<p>The same as <code>apply(x, f)</code> but returns nothing.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/iwalk.html">iwalk(x, f)</a></p>
+<blockquote class="blockquote">
+<p>The same as <code>iapply(x, f)</code> but returns nothing.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/keep!.html">keep!(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Keep the elements <code>x_i</code> of collection <code>x</code> such that <code>p(x_i)</code> is true.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/none.html">none(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Do none <code>x_i</code> in <code>x</code> satisfies <code>p</code>?</p>
+</blockquote>
+<hr>
+<p><a href="./reference/has_key.html">has_key(d, k)</a></p>
+<blockquote class="blockquote">
+<p>Returns <code>true</code> if the dictionary <code>d</code> has key <code>k</code>.</p>
+</blockquote>
+<hr>
+<p><a href="reference/flatten_dict.qmd">flatten_dict(key, value)</a></p>
+<blockquote class="blockquote">
+<p>Transform a pair <code>key</code> and <code>value</code> into a dictionary.</p>
+</blockquote>
+<hr>
+<p><a href="reference/flatten_dict.qmd">flatten_dict(key, value:: Dict{&lt;:Any, &lt;:Any})</a></p>
+<blockquote class="blockquote">
+<p>Given a <code>key</code> and a <code>value</code> which is a dictionary, concatenate the <code>key</code> string to every other key of the dictionary <code>value</code>. A dictionary of dictionaries will become only a dictionary of values.</p>
+</blockquote>
+<hr>
+<p><a href="reference/flatten_dict.qmd">flatten_dict(dict::Dict{&lt;:Any, &lt;:Any}, n = 1)</a></p>
+<blockquote class="blockquote">
+<p>Remove one layer of dictionaries of a dictionary.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/possibly.html">possibly(f, otherwise = nothing)</a></p>
+<blockquote class="blockquote">
+<p>Create a modified version of the function <code>f</code> such that it returns <code>otherwise</code> when <code>f(x)</code> throws an error.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/modify.html">modify(x, f)</a></p>
+<blockquote class="blockquote">
+<p>Modify a copy of <code>x</code> applying <code>f</code> to each of its elements.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/compose.html">compose(args…)</a></p>
+<blockquote class="blockquote">
+<p>Create the composite function of the <code>args...</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/get_value.html">get_value(d, k, v = nothing)</a></p>
+<blockquote class="blockquote">
+<p>Try to get the value <code>d[k]</code>, it it exists. Otherwise, return <code>v</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/papply.html">papply(x, f)</a></p>
+<blockquote class="blockquote">
+<p>Apply the function <code>f</code> to each element of <code>x</code>. This is a generalization of <code>apply2</code>.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/compose_n.html">compose_n(f, n = 2)</a></p>
+<blockquote class="blockquote">
+<p>Compose the function <code>f</code> with itself <code>n</code> times.</p>
+</blockquote>
+<hr>
+<p><a href="./reference/every.html">every(x, p)</a></p>
+<blockquote class="blockquote">
+<p>Do every <code>x_i</code> in <code>x</code> satisfies <code>p</code>?</p>
+</blockquote>
+<hr>
+<p><a href="./reference/modify_if.html">modify_if(x, f, p)</a></p>
+<blockquote class="blockquote">
+<p>Modify a copy of <code>x</code> applying <code>f</code> to each of its elements where the function <code>p</code> is <code>true</code>.</p>
+</blockquote>
+<hr>
 
 
 </section>
