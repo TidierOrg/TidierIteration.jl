@@ -1,16 +1,16 @@
-function apply(x, f)
+function map_tidy(x, f)
     map(f, x)
 end
 
 d = Dict(1 => 1, 2 => 2)
 
-function apply(d::Dict, f, g = identity)
+function map_values(d::Dict, f, g = identity)
 
     Dict(g(k) => f(d[k]) for k ∈ keys(d))
 
 end
 
-apply(d, x -> x^2, x -> 0)
+map_values(d, x -> x^2, x -> 0)
 
 values(d) |> collect
 
@@ -26,7 +26,7 @@ findfirst(isodd, Dict(1=>2, "b"=>3))
 d1 = Dict(1=>1, 2=>2)
 d2 = Dict(2=>2, 3=>3)
 
-apply2(d1, d2, +)
+map2(d1, d2, +)
 
 x = [1:4;]
 y = [1:4;]
@@ -36,11 +36,8 @@ isequal(x, y)
 x = [5:10;]
 d = Dict(i => i+1 for i ∈ x)
 
-apply(x, x->x^2)
-apply(d, x->x^2)
-
-apply_dict(x, x->x^2)
-apply_dict(d, x->x^2)
+map_tidy(x, x->x^2)
+map_values(d, x->x^2)
 
 iapply(x, (i, x)-> (i, x^2))
 iapply(d, (i, x)-> (i, x^2))

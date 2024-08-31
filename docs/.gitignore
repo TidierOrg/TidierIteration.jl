@@ -1,3 +1,5 @@
+Manifest.toml
+
 site/
 .quarto/
 .jupyter_cache/

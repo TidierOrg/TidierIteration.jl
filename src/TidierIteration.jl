@@ -8,27 +8,29 @@ export @chain;
 
 using JSON3;
 
-include("apply.jl");
+include("map_walk.jl");
 export 
-    apply,
-    apply_keys,
-    apply_dfc,
-    apply_dfr,
+    map_tidy,
+    map_values,
+    map_keys,
+    map_dfr,
+    map_dfc,
     walk, 
 
-    apply2,
+    map2,
     walk2,
 
-    iapply,
+    imap,
     iwalk,
     
-    papply,
+    pmap,
     pwalk;
 
 include("modify.jl");
 export 
     modify,
     modify!,
+    modify_values!,
     modify_if,
     modify_if!,
     keep,
