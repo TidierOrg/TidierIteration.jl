@@ -1,7 +1,7 @@
 """
     modify!(x, f)
 
-Modify `x` applying `f` to each of its elements.
+Modify `x` in place by applying `f` to each of its elements.
 """
 function modify!(x, f)
     for (i, x_i) ∈ enumerate(x)
@@ -11,7 +11,12 @@ function modify!(x, f)
     x
 end
 
-function modify!(d::Dict, f)
+"""
+    modify_values!(d::Dict, f)
+
+Modify the values of a Dict `d` in place by applying `f` to each of its values.
+"""
+function modify_values!(d::Dict, f)
     for k ∈ keys(d)
         d[k] = f(d[k])
     end

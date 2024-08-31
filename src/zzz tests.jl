@@ -2,7 +2,7 @@ using TidierIteration
 
 # adverbs.jl
 x = [1:10;]
-map_asis(x, x -> x^2)
+map_tidy(x, x -> x^2)
 
 f(x) = x + 1
 

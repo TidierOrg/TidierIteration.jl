@@ -8,13 +8,13 @@ fff(x) = 2x
     @aside @show _
     map_asis(fff)
     @aside @show _
-    map_asis(x -> x - 1)
+    map_values(x -> x - 1)
 end
 
 @chain begin
     d
     @aside @show _
-    map_asis(hash)
+    map_values(hash)
 end
 
 d = Dict(
@@ -66,6 +66,7 @@ flatten_dfr_json(dicts, n = 1)
 flatten_dfr_json(dicts, n = 2)
 
 f = possibly(log, 0)
+
 function f2(x, y, z = 3; a = 9)
     x + y + z + a
 end
