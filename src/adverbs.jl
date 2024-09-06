@@ -45,7 +45,7 @@ function possibly(f, otherwise = nothing; silently = true)
             f(args...; kwargs...)
         catch
             if silently == false
-                @warn "Error executing function! Returning `nothing` instead..."
+                @warn "Error executing function! Returning $otherwise instead..."
             end
             
             otherwise
