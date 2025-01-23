@@ -14,7 +14,7 @@ TidierIteration.jl is a 100% Julia implementation of the `purrr` R package. It a
 For the stable version:
 
 ```
-] add https://github.com/TidierOrg/TidierIteration
+] add https://github.com/TidierOrg/TidierIteration.jl
 ```
 
 The `]` character starts the Julia [package manager](https://docs.julialang.org/en/v1/stdlib/Pkg/). Press the backspace key to return to the Julia prompt.
@@ -24,7 +24,7 @@ or
 
 ```julia
 using Pkg
-Pkg.add(url="https://github.com/TidierOrg/TidierIteration")
+Pkg.add(url="https://github.com/TidierOrg/TidierIteration.jl")
 ```
 
 ## Comparison to `purrr`
